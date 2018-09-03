@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  page_url: MyString
+  scraping_frequency: 1
+  target_element: MyString
+  active: false
+
+two:
+  page_url: MyString
+  scraping_frequency: 1
+  target_element: MyString
+  active: false

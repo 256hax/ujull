@@ -1,0 +1,2 @@
+class ScrapingPage < ApplicationRecord
+end
