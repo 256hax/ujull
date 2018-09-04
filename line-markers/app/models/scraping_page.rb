@@ -1,3 +1,3 @@
 class ScrapingPage < ApplicationRecord
-  has_many :scraping_texts, dependent: :destroy
+  has_many :scraped_code, dependent: :destroy
 end
