@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Html:</strong>
+  <%= @scraped_code.html %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @scraped_code.text %>
+</p>
+
+<p>
+  <strong>Scraping page:</strong>
+  <%= @scraped_code.scraping_page %>
+</p>
+
+<%= link_to 'Edit', edit_scraped_code_path(@scraped_code) %> |
+<%= link_to 'Back', scraped_codes_path %>

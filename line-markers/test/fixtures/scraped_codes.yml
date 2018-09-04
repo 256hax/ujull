@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  html: MyText
+  text: MyText
+  scraping_page: one
+
+two:
+  html: MyText
+  text: MyText
+  scraping_page: two

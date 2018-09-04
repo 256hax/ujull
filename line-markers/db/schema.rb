@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_04_141331) do
+ActiveRecord::Schema.define(version: 2018_09_04_144453) do
+
+  create_table "scraped_codes", force: :cascade do |t|
+    t.text "html"
+    t.text "text"
+    t.integer "scraping_page_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["scraping_page_id"], name: "index_scraped_codes_on_scraping_page_id"
+  end
 
   create_table "scraping_pages", force: :cascade do |t|
     t.string "page_url"

@@ -10,7 +10,7 @@
       <th>Target element</th>
       <th>Active</th>
       <th colspan="3"></th>
-      <th>Scraping Text</th>
+      <th>Scraped Code</th>
     </tr>
   </thead>
 
@@ -24,7 +24,7 @@
         <td><%= link_to 'Show', scraping_page %></td>
         <td><%= link_to 'Edit', edit_scraping_page_path(scraping_page) %></td>
         <td><%= link_to 'Destroy', scraping_page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to '取得実行', new_scraping_text_path(scraping_page) %></td>
+        <td><%= link_to '取得実行', new_scraped_codes_path(scraping_page) %></td>
       </tr>
     <% end %>
   </tbody>

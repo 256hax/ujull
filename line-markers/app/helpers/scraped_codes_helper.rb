@@ -1,0 +1,2 @@
+module ScrapedCodesHelper
+end

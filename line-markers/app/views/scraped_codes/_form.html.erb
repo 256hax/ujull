@@ -1,0 +1,32 @@
+<%= form_with(model: scraped_code, local: true) do |form| %>
+  <% if scraped_code.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(scraped_code.errors.count, "error") %> prohibited this scraped_code from being saved:</h2>
+
+      <ul>
+      <% scraped_code.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :html %>
+    <%= form.text_area :html, size: '100x10' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :text %>
+    <%= form.text_area :text, size: '100x10' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :scraping_page_id %>
+    <%= form.text_field :scraping_page_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

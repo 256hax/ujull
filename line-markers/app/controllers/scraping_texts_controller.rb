@@ -18,6 +18,7 @@ class ScrapingTextsController < ApplicationController
 
     url = ScrapingPage.find(@scraping_page_id).page_url
     element = ScrapingPage.find(@scraping_page_id).target_element
+
     agent = Mechanize.new
     page = agent.get(url)
     @scraping_body = page.search(element)
