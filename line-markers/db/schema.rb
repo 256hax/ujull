@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_04_035315) do
+ActiveRecord::Schema.define(version: 2018_09_04_141331) do
 
   create_table "scraping_pages", force: :cascade do |t|
     t.string "page_url"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2018_09_04_035315) do
   end
 
   create_table "scraping_texts", force: :cascade do |t|
-    t.string "body"
+    t.text "body"
     t.integer "scraping_page_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

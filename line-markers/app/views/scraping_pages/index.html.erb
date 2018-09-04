@@ -10,19 +10,21 @@
       <th>Target element</th>
       <th>Active</th>
       <th colspan="3"></th>
+      <th>Scraping Text</th>
     </tr>
   </thead>
 
   <tbody>
     <% @scraping_pages.each do |scraping_page| %>
       <tr>
-        <td><%= scraping_page.page_url %></td>
+        <td><%= link_to scraping_page.page_url, scraping_page.page_url, :target => "_blank" %></td>
         <td><%= scraping_page.scraping_frequency %></td>
         <td><%= scraping_page.target_element %></td>
         <td><%= scraping_page.active %></td>
         <td><%= link_to 'Show', scraping_page %></td>
         <td><%= link_to 'Edit', edit_scraping_page_path(scraping_page) %></td>
         <td><%= link_to 'Destroy', scraping_page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '取得実行', new_scraping_text_path(scraping_page) %></td>
       </tr>
     <% end %>
   </tbody>

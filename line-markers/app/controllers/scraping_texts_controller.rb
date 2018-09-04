@@ -14,6 +14,14 @@ class ScrapingTextsController < ApplicationController
 
   # GET /scraping_texts/new
   def new
+    @scraping_page_id = params[:id]
+
+    url = ScrapingPage.find(@scraping_page_id).page_url
+    element = ScrapingPage.find(@scraping_page_id).target_element
+    agent = Mechanize.new
+    page = agent.get(url)
+    @scraping_body = page.search(element)
+
     @scraping_text = ScrapingText.new
   end
 
