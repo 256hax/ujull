@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_03_020926) do
+ActiveRecord::Schema.define(version: 2018_09_04_035315) do
 
   create_table "scraping_pages", force: :cascade do |t|
     t.string "page_url"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(version: 2018_09_03_020926) do
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "scraping_texts", force: :cascade do |t|
+    t.string "body"
+    t.integer "scraping_page_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["scraping_page_id"], name: "index_scraping_texts_on_scraping_page_id"
   end
 
 end

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Scraping Texts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Body</th>
+      <th>Scraping page</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @scraping_texts.each do |scraping_text| %>
+      <tr>
+        <td><%= scraping_text.body %></td>
+        <td><%= scraping_text.scraping_page %></td>
+        <td><%= link_to 'Show', scraping_text %></td>
+        <td><%= link_to 'Edit', edit_scraping_text_path(scraping_text) %></td>
+        <td><%= link_to 'Destroy', scraping_text, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Scraping Text', new_scraping_text_path %>

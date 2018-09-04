@@ -1,0 +1,2 @@
+module ScrapingTextsHelper
+end

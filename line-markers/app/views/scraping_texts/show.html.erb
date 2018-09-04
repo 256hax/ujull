@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @scraping_text.body %>
+</p>
+
+<p>
+  <strong>Scraping page:</strong>
+  <%= @scraping_text.scraping_page %>
+</p>
+
+<%= link_to 'Edit', edit_scraping_text_path(@scraping_text) %> |
+<%= link_to 'Back', scraping_texts_path %>
