@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Diff Codes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Html</th>
+      <th>Text</th>
+      <th>Scraped code created at</th>
+      <th>Scraping page</th>
+      <th>Scraped code</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @diff_codes.each do |diff_code| %>
+      <tr>
+        <td><%= diff_code.html %></td>
+        <td><%= diff_code.text %></td>
+        <td><%= diff_code.scraped_code_created_at %></td>
+        <td><%= diff_code.scraping_page %></td>
+        <td><%= diff_code.scraped_code %></td>
+        <td><%= link_to 'Show', diff_code %></td>
+        <td><%= link_to 'Edit', edit_diff_code_path(diff_code) %></td>
+        <td><%= link_to 'Destroy', diff_code, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Diff Code', new_diff_code_path %>

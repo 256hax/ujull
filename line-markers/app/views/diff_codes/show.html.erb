@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Html:</strong>
+  <%= @diff_code.html %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @diff_code.text %>
+</p>
+
+<p>
+  <strong>Scraped code created at:</strong>
+  <%= @diff_code.scraped_code_created_at %>
+</p>
+
+<p>
+  <strong>Scraping page:</strong>
+  <%= @diff_code.scraping_page %>
+</p>
+
+<p>
+  <strong>Scraped code:</strong>
+  <%= @diff_code.scraped_code %>
+</p>
+
+<%= link_to 'Edit', edit_diff_code_path(@diff_code) %> |
+<%= link_to 'Back', diff_codes_path %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :diff_codes
   # scraped_codes
   get '/scraped_codes/new/:id', to: 'scraped_codes#new', as: :new_scraped_codes
   resources :scraped_codes, only: [:index, :create, :edit, :show, :update, :destroy]

@@ -1,0 +1,2 @@
+module DiffCodesHelper
+end

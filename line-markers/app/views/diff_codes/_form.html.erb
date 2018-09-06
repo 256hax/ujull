@@ -1,0 +1,42 @@
+<%= form_with(model: diff_code, local: true) do |form| %>
+  <% if diff_code.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(diff_code.errors.count, "error") %> prohibited this diff_code from being saved:</h2>
+
+      <ul>
+      <% diff_code.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :html %>
+    <%= form.text_area :html %>
+  </div>
+
+  <div class="field">
+    <%= form.label :text %>
+    <%= form.text_area :text %>
+  </div>
+
+  <div class="field">
+    <%= form.label :scraped_code_created_at %>
+    <%= form.datetime_select :scraped_code_created_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :scraping_page_id %>
+    <%= form.text_field :scraping_page_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :scraped_code_id %>
+    <%= form.text_field :scraped_code_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
