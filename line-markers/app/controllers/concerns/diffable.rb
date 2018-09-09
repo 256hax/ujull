@@ -2,9 +2,9 @@ module Diffable
   extend ActiveSupport::Concern
 
   # args: DiffCode obj, retrun: @diff_code obj
-  def diff_with_trimming(master_code, old_code)
-    @diff_code.html = Diffy::Diff.new(old_code.html, master_code.html).to_s(:html_simple)
-    @diff_code.text = Diffy::Diff.new(old_code.text, master_code.text).to_s(:html_simple)
+  def diff_with_trimming(master_code, previous_code)
+    @diff_code.html = Diffy::Diff.new(previous_code.html, master_code.html).to_s(:html_simple)
+    @diff_code.text = Diffy::Diff.new(previous_code.text, master_code.text).to_s(:html_simple)
 
     @diff_code.scraping_page_id = master_code.scraping_page_id
     @diff_code.scraped_code_id = master_code.id

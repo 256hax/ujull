@@ -17,20 +17,19 @@ class DiffCodesController < ApplicationController
   def new_latest
     @diff_code = DiffCode.new
 
-    params[:id] ||= 1 # temporary workaround
-    scraping_page_id = params[:id]
-    scraped_code = ScrapedCode.new.latest_two(scraping_page_id)
-    diff_with_trimming(scraped_code[0], scraped_code[1]) # concerns/diffable.rb
+    scraped_code = ScrapedCode.new.latest_two(params[:id]) # args ScrapingPage.id
+    master_code = scraped_code[0]
+    previous_code = scraped_code[1]
+    diff_with_trimming(master_code, previous_code) # concerns/diffable.rb
   end
 
   # GET /diff_codes/new
   def new
     @diff_code = DiffCode.new
 
-    params[:id] ||= 1 # temporary workaround
-    id = params[:id]
-    scraped_code = ScrapedCode.new.latest_two(scraping_page_id)
-    diff_latest(scraped_code) # concerns/diffable.rb
+    master_code = ScrapedCode.find(params[:id])
+    previous_code = ScrapedCode.new.previous_record(master_code.id, master_code.scraping_page_id, master_code.created_at)
+    diff_with_trimming(master_code, previous_code) # concerns/diffable.rb
   end
 
 
