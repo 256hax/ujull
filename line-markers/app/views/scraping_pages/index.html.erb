@@ -11,14 +11,14 @@
       <th>Scraping frequency</th>
       <th>Target element</th>
       <th>Active</th>
-      <th colspan="4"></th>
+      <th colspan="5"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @scraping_pages.each do |scraping_page| %>
       <tr>
-        <td><%= link_to scraping_page.page_url, scraping_page.page_url, :target => "_blank" %></td>
+        <td class="url" title="<%= scraping_page.page_url %>"><%= link_to scraping_page.page_url, scraping_page.page_url, :target => "_blank" %></td>
         <td><%= scraping_page.scraping_frequency %></td>
         <td><%= scraping_page.target_element %></td>
         <td><%= scraping_page.active %></td>
@@ -26,6 +26,7 @@
         <td><%= link_to 'Edit', edit_scraping_page_path(scraping_page) %></td>
         <td><%= link_to 'Destroy', scraping_page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= link_to 'スクレイピング', new_scraped_codes_path(scraping_page) %></td>
+        <td><%= link_to '最新をDiff', new_diff_codes_path(scraping_page) %></td>
       </tr>
     <% end %>
   </tbody>
