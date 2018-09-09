@@ -17,8 +17,8 @@
   <tbody>
     <% @scraped_codes.each do |scraped_code| %>
       <tr>
-        <td><%= scraped_code.html %></td>
-        <td><%= scraped_code.text %></td>
+        <td class="code" title="<%= scraped_code.html %>"><%= scraped_code.html %></td>
+        <td class="code" title="<%= scraped_code.text %>"><%= scraped_code.text %></td>
         <td><%= scraped_code.scraping_page %></td>
         <td><%= link_to 'Show', scraped_code %></td>
         <td><%= link_to 'Edit', edit_scraped_code_path(scraped_code) %></td>
