@@ -2,6 +2,8 @@
 
 <h1>Diff Codes</h1>
 
+<%= link_to 'Scraping Page', scraping_pages_path %>
+
 <table>
   <thead>
     <tr>
@@ -17,8 +19,8 @@
   <tbody>
     <% @diff_codes.each do |diff_code| %>
       <tr>
-        <td><%= diff_code.html %></td>
-        <td><%= diff_code.text %></td>
+        <td class="code" title="<%= diff_code.html %>"><%= diff_code.html %></td>
+        <td class="code" title="<%= diff_code.text %>"><%= diff_code.text %></td>
         <td><%= diff_code.scraped_code_created_at %></td>
         <td><%= diff_code.scraping_page %></td>
         <td><%= diff_code.scraped_code %></td>
