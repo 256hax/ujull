@@ -7,6 +7,7 @@
 <table>
   <thead>
     <tr>
+      <th>Scraping Page ID</th>
       <th>Html</th>
       <th>Text</th>
       <th>Scraped code created at</th>
@@ -19,6 +20,7 @@
   <tbody>
     <% @diff_codes.each do |diff_code| %>
       <tr>
+        <td><%= diff_code.scraping_page_id %></td>
         <td class="code" title="<%= diff_code.html %>"><%= diff_code.html %></td>
         <td class="code" title="<%= diff_code.text %>"><%= diff_code.text %></td>
         <td><%= diff_code.scraped_code_created_at %></td>
