@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/diff_codes/new/:id', to: 'diff_codes#new', as: :new_diff_codes
   resources :diff_codes
   # scraped_codes
   get '/scraped_codes/new/:id', to: 'scraped_codes#new', as: :new_scraped_codes

@@ -14,6 +14,7 @@ class ScrapedCodesController < ApplicationController
 
   # GET /scraped_codes/new
   def new
+    params[:id] ||= 1 # temporary workaround
     @scraping_page_id = params[:id]
     url = ScrapingPage.find(@scraping_page_id).page_url
     element = ScrapingPage.find(@scraping_page_id).target_element
