@@ -21,19 +21,7 @@ class DiffCodesController < ApplicationController
     params[:id] ||= 1 # temporary workaround
     scraping_page_id = params[:id]
     scraped_code = ScrapedCode.new.latest_two(scraping_page_id)
-
-    first_latest_html = scraped_code[1].html
-    second_latest_html = scraped_code[0].html
-    @diff_code.html = Diffy::Diff.new(second_latest_html, first_latest_html).to_s(:html_simple)
-
-    # trimming is make it easy to see for diff
-    first_latest_text = trimming_for_diff_text(scraped_code[1].text)
-    second_latest_text = trimming_for_diff_text(scraped_code[0].text)
-    @diff_code.text = Diffy::Diff.new(second_latest_text, first_latest_text).to_s(:html_simple)
-
-    @diff_code.scraping_page_id = scraped_code[1].scraping_page_id
-    @diff_code.scraped_code_id = scraped_code[1].id
-    @diff_code.scraped_code_created_at = scraped_code[1].created_at
+    diff_latest(scraped_code) # concerns/diffable.rb
   end
 
   # GET /diff_codes/1/edit
