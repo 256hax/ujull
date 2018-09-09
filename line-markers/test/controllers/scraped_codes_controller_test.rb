@@ -11,7 +11,7 @@ class ScrapedCodesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new" do
-    get new_scraped_code_url
+    get new_scraped_codes_url(@scraped_code.scraping_page_id)
     assert_response :success
   end
 

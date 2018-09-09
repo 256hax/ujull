@@ -20,7 +20,10 @@ class DiffCodesController < ApplicationController
     scraped_code = ScrapedCode.new.latest_two(params[:id]) # args ScrapingPage.id
     master_code = scraped_code[0]
     previous_code = scraped_code[1]
-    diff_with_trimming(master_code, previous_code) # concerns/diffable.rb
+
+    no_previous_code(previous_code) # if can't diff, redirect to index
+
+    diff_with_trimming(master_code, previous_code) # Diffable module
   end
 
   # GET /diff_codes/new
@@ -29,7 +32,10 @@ class DiffCodesController < ApplicationController
 
     master_code = ScrapedCode.find(params[:id])
     previous_code = ScrapedCode.new.previous_record(master_code.id, master_code.scraping_page_id, master_code.created_at)
-    diff_with_trimming(master_code, previous_code) # concerns/diffable.rb
+
+    no_previous_code(previous_code) # if can't diff, redirect to index
+
+    diff_with_trimming(master_code, previous_code) # return: @diff_code. Diffable module
   end
 
 
@@ -86,5 +92,11 @@ class DiffCodesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def diff_code_params
       params.require(:diff_code).permit(:html, :text, :scraped_code_created_at, :scraping_page_id, :scraped_code_id)
+    end
+
+    def no_previous_code(previous_code)
+      if previous_code == nil
+        redirect_to :action => 'index', alert: '比較対象がありません。もう１件、スクレイピングデータが追加されれば比較できます。'
+      end
     end
 end
