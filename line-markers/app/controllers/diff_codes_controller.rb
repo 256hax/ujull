@@ -14,6 +14,15 @@ class DiffCodesController < ApplicationController
   def show
   end
 
+  def new_latest
+    @diff_code = DiffCode.new
+
+    params[:id] ||= 1 # temporary workaround
+    scraping_page_id = params[:id]
+    scraped_code = ScrapedCode.new.latest_two(scraping_page_id)
+    diff_latest(scraped_code) # concerns/diffable.rb
+  end
+
   # GET /diff_codes/new
   def new
     @diff_code = DiffCode.new
@@ -23,6 +32,7 @@ class DiffCodesController < ApplicationController
     scraped_code = ScrapedCode.new.latest_two(scraping_page_id)
     diff_latest(scraped_code) # concerns/diffable.rb
   end
+
 
   # GET /diff_codes/1/edit
   def edit
