@@ -1,4 +1,6 @@
 class ScrapingPagesController < ApplicationController
+  include Scrapable
+
   before_action :set_scraping_page, only: [:show, :edit, :update, :destroy]
 
   # GET /scraping_pages
@@ -25,6 +27,13 @@ class ScrapingPagesController < ApplicationController
   # POST /scraping_pages.json
   def create
     @scraping_page = ScrapingPage.new(scraping_page_params)
+
+    # set title
+    url = @scraping_page.page_url
+    hostname = URI.parse(url).host
+    page = get_page_code(url)
+    title = "#{page.title} #{hostname}"
+    @scraping_page.title = title
 
     respond_to do |format|
       if @scraping_page.save

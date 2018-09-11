@@ -1,4 +1,6 @@
 class ScrapedCodesController < ApplicationController
+  include Scrapable
+  
   before_action :set_scraped_code, only: [:show, :edit, :update, :destroy]
 
   # GET /scraped_codes
@@ -19,8 +21,7 @@ class ScrapedCodesController < ApplicationController
     url = ScrapingPage.find(params[:id]).page_url
     element = ScrapingPage.find(params[:id]).target_element
 
-    agent = Mechanize.new
-    page = agent.get(url)
+    page = get_page_code(url)
     scraped_code = page.search(element)
 
     @scraped_code = ScrapedCode.new
@@ -29,7 +30,6 @@ class ScrapedCodesController < ApplicationController
     scraped_code.each do |s|
       @scraped_code.text = @scraped_code.text + s.inner_text + "\n"
     end
-    #@scraped_code.text = page.search(element)
 
     @scraped_code.scraping_page_id = @scraping_page_id
   end
