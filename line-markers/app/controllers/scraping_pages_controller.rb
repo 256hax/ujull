@@ -17,6 +17,7 @@ class ScrapingPagesController < ApplicationController
   # GET /scraping_pages/new
   def new
     @scraping_page = ScrapingPage.new
+    @scraping_page.active = true # default checked
   end
 
   # GET /scraping_pages/1/edit
