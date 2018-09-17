@@ -1,6 +1,6 @@
 class ScrapedCodesController < ApplicationController
   include Scrapable
-  
+
   before_action :set_scraped_code, only: [:show, :edit, :update, :destroy]
 
   # GET /scraped_codes
