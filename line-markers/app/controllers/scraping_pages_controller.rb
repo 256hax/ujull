@@ -33,7 +33,8 @@ class ScrapingPagesController < ApplicationController
     url = @scraping_page.page_url
     hostname = URI.parse(url).host
     page = get_page_code(url)
-    title = "#{page.title} #{hostname}"
+    title = page.title if page.respond_to?(:title) # for RSS. RSS get undefiend page.title method.
+    title = "#{title} #{hostname}"
     @scraping_page.title = title
 
     respond_to do |format|
