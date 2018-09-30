@@ -31,3 +31,7 @@
 # Ignore master key for decrypting credentials and more.
 **/config/master.key
 **/config/credentials.yml.enc
+
+# Scraped Folders
+**/public/scraped/[0-9a-z]/*
+!**/public/scraped/[0-9a-z]/.keep
