@@ -1,0 +1,2 @@
+module ScrapingPages::HtmlsHelper
+end

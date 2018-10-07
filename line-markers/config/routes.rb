@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  # scraping_pages
+  namespace :scraping_pages do
+    get 'htmls/create'
+  end
+
   # diff_codes
   get '/diff_codes/new_latest/:id', to: 'diff_codes#new_latest', as: :new_diff_codes_latest
   get '/diff_codes/new/:id', to: 'diff_codes#new', as: :new_diff_codes
