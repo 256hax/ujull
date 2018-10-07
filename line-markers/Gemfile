@@ -36,7 +36,11 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# Scraping
+gem "typhoeus"
 gem 'mechanize' # Scraping with nokogiri
+
+# Diff
 gem 'diffy', '~> 3.2' # Diff
 
 group :development, :test do
