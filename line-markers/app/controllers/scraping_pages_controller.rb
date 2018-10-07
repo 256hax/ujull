@@ -31,9 +31,9 @@ class ScrapingPagesController < ApplicationController
 
     # set title
     url = @scraping_page.page_url
-    uri = URI.parse(url)
-    page = get_page_code(url)
-    title = page.title if page.respond_to?(:title) # undefiend page.title method error for RSS.
+    uri = URI.parse(url) # ex) https://example.com/ -> set "example.com"
+    page = get_page_code(url) # call concerns/scrapable.rb
+    title = page.title if page.respond_to?(:title) # for undefiend page.title method error (RSS).
     title = "#{title} #{uri.host}"
     @scraping_page.title = title
 
