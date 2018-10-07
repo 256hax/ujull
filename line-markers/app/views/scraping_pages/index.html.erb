@@ -12,7 +12,7 @@
       <th>Scraping frequency</th>
       <th>Target element</th>
       <th>Active</th>
-      <th colspan="5"></th>
+      <th colspan="6"></th>
     </tr>
   </thead>
 
@@ -27,6 +27,7 @@
         <td><%= link_to 'Show', scraping_page %></td>
         <td><%= link_to 'Edit', edit_scraping_page_path(scraping_page) %></td>
         <td><%= link_to 'Destroy', scraping_page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'HTML取得', scraping_pages_create_htmls_path(scraping_page), method: :post %></td>
         <td><%= link_to 'スクレイピング', new_scraped_codes_path(scraping_page) %></td>
         <td><%= link_to '最新をDiff', new_diff_codes_latest_path(scraping_page) %></td>
       </tr>
