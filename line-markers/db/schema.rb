@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_11_011025) do
+ActiveRecord::Schema.define(version: 2018_10_07_223424) do
 
   create_table "diff_codes", force: :cascade do |t|
     t.text "html"
@@ -41,14 +41,8 @@ ActiveRecord::Schema.define(version: 2018_09_11_011025) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "title"
-  end
-
-  create_table "scraping_texts", force: :cascade do |t|
-    t.text "body"
-    t.integer "scraping_page_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["scraping_page_id"], name: "index_scraping_texts_on_scraping_page_id"
+    t.string "file_name"
+    t.datetime "scraping_latest_date"
   end
 
 end
