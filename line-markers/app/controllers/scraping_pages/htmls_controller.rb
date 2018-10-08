@@ -12,7 +12,7 @@ class ScrapingPages::HtmlsController < ApplicationController
 
     requests.map { |request|
       directory_path = @scraping_page.directory_path
-      file_name = @scraping_page.file_name
+      file_name = get_file_name(@scraping_page.id)
       save_html(directory_path, file_name, request) # concerns/file_savable.rb
     }
   end

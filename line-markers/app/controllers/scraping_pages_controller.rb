@@ -42,7 +42,6 @@ class ScrapingPagesController < ApplicationController
 
     ### set scraping HTML file name
     @scraping_page.directory_path = create_directory(url) # concerns/file_savable.rb
-    @scraping_page.file_name = get_file_name(url) # concerns/file_savable.rb
 
     respond_to do |format|
       if @scraping_page.save

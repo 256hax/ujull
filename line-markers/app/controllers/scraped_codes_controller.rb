@@ -18,9 +18,10 @@ class ScrapedCodesController < ApplicationController
   def new
     @scraping_page_id = params[:id]
     @scraping_page = ScrapingPage.find(params[:id])
+    file_name = get_file_name(@scraping_page.id)
 
     # url is scraped html path(local)
-    url = "#{get_my_domain_and_port}/#{@scraping_page.directory_path}/#{@scraping_page.file_name}"
+    url = "#{get_my_domain_and_port}/#{@scraping_page.directory_path}/#{file_name}"
     agent = Mechanize.new
     page = agent.get(url)
     scraped_code = page.search(@scraping_page.target_element)

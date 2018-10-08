@@ -14,12 +14,8 @@ module FileSavable
     directory_path # => "scraped_html/e/example.com"
   end
 
-  def get_file_name(url)
-    uri = URI.parse(url) # => "https://example.com/?list.html&category=1"
-    uri_sanitize = uri.path.gsub(/\/|\.\./, '_') # replace "slash" and "double dots" to "underscore"
-    uri_query = "?#{uri.query}" if(uri.query)
-    file_extension = '.html' # scraping need "html" extension
-    file_name = "#{uri_sanitize}#{uri_query}#{file_extension}" # => "_?list.html&category=1.html"
+  def get_file_name(id)
+    "#{id}.html" # scraping need ".html"
   end
 
   ### save file under public directory
