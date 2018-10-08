@@ -3,7 +3,7 @@ module FileSavable
 
   ### return: directory_path
   def create_directory(url)
-    uri = URI.parse(url) # => https://example.com/./../list.html?category=1
+    uri = URI.parse(url) # => "https://example.com/?list.html&category=1"
 
     uri_first_char = uri.host[0, 1] # => e
     uri_host = uri.host.gsub(/\/|\.\./, '_') # for security
@@ -11,15 +11,15 @@ module FileSavable
     directory_full_path = "#{Rails.public_path}/scraped_html/#{uri_first_char}/#{uri_host}" # starting directory path must public path for security
 
     Dir.mkdir(directory_full_path) unless ( FileTest.exist?(directory_full_path) )
-    directory_path
+    directory_path # => "scraped_html/e/example.com"
   end
 
   def get_file_name(url)
-    uri = URI.parse(url) # => https://example.com/./../list.html?category=1
+    uri = URI.parse(url) # => "https://example.com/?list.html&category=1"
     uri_sanitize = uri.path.gsub(/\/|\.\./, '_') # replace "slash" and "double dots" to "underscore"
     uri_query = "?#{uri.query}" if(uri.query)
     file_extension = '.html' # scraping need "html" extension
-    file_name = "#{uri_sanitize}#{uri_query}#{file_extension}" # => "_.___list.html?category=1.html"
+    file_name = "#{uri_sanitize}#{uri_query}#{file_extension}" # => "_?list.html&category=1.html"
   end
 
   ### save file under public directory

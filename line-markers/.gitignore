@@ -33,5 +33,6 @@
 **/config/credentials.yml.enc
 
 # Scraped Folders
-**/public/scraped_html/[0-9a-z]/*
+#**/public/scraped_html/[0-9a-z]/*
+**/public/scraped_html/*
 !**/public/scraped_html/[0-9a-z]/.keep
