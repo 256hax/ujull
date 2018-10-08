@@ -15,10 +15,11 @@ module FileSavable
   end
 
   def get_file_name(url)
-    uri = URI.parse(url) # uri => https://example.com/./../list.html?category=1
+    uri = URI.parse(url) # => https://example.com/./../list.html?category=1
     uri_sanitize = uri.path.gsub(/\/|\.\./, '_') # replace "slash" and "double dots" to "underscore"
     uri_query = "?#{uri.query}" if(uri.query)
-    file_name = "#{uri_sanitize}#{uri_query}.txt" # => "_.___list.html?category=1.txt"
+    file_extension = '.html' # scraping need "html" extension
+    file_name = "#{uri_sanitize}#{uri_query}#{file_extension}" # => "_.___list.html?category=1.html"
   end
 
   ### save file under public directory

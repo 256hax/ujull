@@ -2,11 +2,6 @@ module Scrapable
   extend ActiveSupport::Concern
   include FileSavable # concerns/file_savable.rb
 
-  def get_page_code(url)
-    agent = Mechanize.new
-    agent.get(url)
-  end
-
   ### args: array(url)  return: scraping result
   def scraping_pages_html(urls)
     hydra = Typhoeus::Hydra.new
@@ -19,5 +14,10 @@ module Scrapable
 
     hydra.run
     requests
+  end
+
+  def get_my_domain_and_port()
+    port = ":#{request.port}" if (request.port)
+    "#{request.protocol}#{request.domain}#{port}" # => "http://localhost:3000"
   end
 end
