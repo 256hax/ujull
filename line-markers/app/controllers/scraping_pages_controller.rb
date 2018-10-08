@@ -33,9 +33,13 @@ class ScrapingPagesController < ApplicationController
     url = @scraping_page.page_url
     uri = URI.parse(url) # ex) https://example.com/ -> set "example.com"
     page = get_page_code(url) # call concerns/scrapable.rb
-    title = page.title if page.respond_to?(:title) # for undefiend page.title method error (RSS).
+    title = page.title if page.respond_to?(:title) # for undefiend page.title method error (ex: RSS or missing title meta tag WebSite).
     title = "#{title} #{uri.host}"
     @scraping_page.title = title
+
+    # set scraping HTML file name
+    @scraping_page.directory_path = create_directory(url) # concerns/file_savable.rb
+    @scraping_page.file_name = get_file_name(url) # concerns/file_savable.rb
 
     respond_to do |format|
       if @scraping_page.save

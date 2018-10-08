@@ -11,9 +11,9 @@ class ScrapingPages::HtmlsController < ApplicationController
     requests = scraping_pages_html(urls) # concerns/scrapable.rb
 
     requests.map { |request|
-      dir_path = create_directory(request.base_url) # concerns/file_savable.rb
-      file_name = get_file_name(request.base_url) # concerns/file_savable.rb
-      save_html(dir_path, file_name, request) # concerns/file_savable.rb
+      directory_path = @scraping_page.directory_path
+      file_name = @scraping_page.file_name
+      save_html(directory_path, file_name, request) # concerns/file_savable.rb
     }
   end
 

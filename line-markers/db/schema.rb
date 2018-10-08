@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_07_223424) do
+ActiveRecord::Schema.define(version: 2018_10_08_083233) do
 
   create_table "diff_codes", force: :cascade do |t|
     t.text "html"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2018_10_07_223424) do
     t.string "title"
     t.string "file_name"
     t.datetime "scraping_latest_date"
+    t.string "directory_path"
   end
 
 end
