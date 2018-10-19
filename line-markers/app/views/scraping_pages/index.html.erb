@@ -8,8 +8,6 @@
   <thead>
     <tr>
       <th>Title</th>
-      <th>Page url</th>
-      <th>Scraping frequency</th>
       <th>Target element</th>
       <th>Active</th>
       <th colspan="6"></th>
@@ -19,9 +17,7 @@
   <tbody>
     <% @scraping_pages.each do |scraping_page| %>
       <tr>
-        <td class="url" title="<%= scraping_page.title %>"><%= scraping_page.title %></td>
-        <td class="url" title="<%= scraping_page.page_url %>"><%= link_to scraping_page.page_url, scraping_page.page_url, :target => "_blank" %></td>
-        <td><%= scraping_page.scraping_frequency %></td>
+        <td class="url" title="<%= scraping_page.title %>"><%= link_to scraping_page.title, scraping_page.page_url, :target => "_blank" %></td>
         <td><%= scraping_page.target_element %></td>
         <td><%= scraping_page.active %></td>
         <td><%= link_to 'Show', scraping_page %></td>
