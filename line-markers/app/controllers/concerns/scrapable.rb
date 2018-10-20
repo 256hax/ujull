@@ -2,14 +2,17 @@ module Scrapable
   extend ActiveSupport::Concern
   include FileSavable # concerns/file_savable.rb
 
-  ### args: array(url)  return: scraping result
-  def scraping_pages_html(urls)
+  def set_charset(body) # args: html body
+    Mechanize::Util.detect_charset(body) # return: charset
+  end
+
+  def scraping_pages_html(urls) # args: array(url)
     hydra = Typhoeus::Hydra.new
 
     requests = urls.map do |url|
       request = Typhoeus::Request.new(url)
-      hydra.queue(request) # get into queues. Typhoeus runs HTTP requests in parallel.
-      request # scraping result
+      hydra.queue(request) # Get into queues. Typhoeus runs HTTP requests in parallel.
+      request # return: scraping result(obj)
     end
 
     hydra.run

@@ -29,18 +29,21 @@ class ScrapingPagesController < ApplicationController
   def create
     @scraping_page = ScrapingPage.new(scraping_page_params)
 
-    ### set title
+    #--- Set url and new mechanize ---#
     url = @scraping_page.page_url
     uri = URI.parse(url) # ex) https://example.com/ -> set "example.com"
-
     agent = Mechanize.new
     page = agent.get(url)
 
-    title = page.title if page.respond_to?(:title) # for undefiend page.title method error (ex: RSS or missing title meta tag WebSite).
+    #--- Set title ---#
+    title = page.title if page.respond_to?(:title) # For undefiend page.title method error (ex: RSS or missing title meta tag WebSite).
     title = "#{title} #{uri.host}"
     @scraping_page.title = title
 
-    ### set scraping HTML file name
+    #--- Set charset ---#
+    @scraping_page.charset = set_charset(page.body)
+
+    #--- Set scraping HTML file name ---#
     @scraping_page.directory_path = create_directory(url) # concerns/file_savable.rb
 
     respond_to do |format|
@@ -86,6 +89,6 @@ class ScrapingPagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def scraping_page_params
-      params.require(:scraping_page).permit(:page_url, :scraping_frequency, :target_element, :active)
+      params.require(:scraping_page).permit(:page_url, :scraping_frequency, :target_element, :active, :charset)
     end
 end
