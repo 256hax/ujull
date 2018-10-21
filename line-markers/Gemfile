@@ -37,8 +37,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 # Scraping
-gem "typhoeus"
+gem 'typhoeus'
 gem 'mechanize' # Scraping with nokogiri
+gem 'robotex' # obey robots.txt
 
 # Diff
 gem 'diffy', '~> 3.2' # Diff

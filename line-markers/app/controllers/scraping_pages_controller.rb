@@ -43,6 +43,10 @@ class ScrapingPagesController < ApplicationController
     #--- Set charset ---#
     @scraping_page.charset = set_charset(page.body)
 
+    #--- Obey robots.txt ---#
+    robotex = Robotex.new "Crawler"
+    @scraping_page.is_robots_allowed = robotex.allowed?(url)
+
     #--- Set scraping HTML file name ---#
     @scraping_page.directory_path = create_directory(url) # concerns/file_savable.rb
 
@@ -89,6 +93,6 @@ class ScrapingPagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def scraping_page_params
-      params.require(:scraping_page).permit(:page_url, :scraping_frequency, :target_element, :active, :charset)
+      params.require(:scraping_page).permit(:page_url, :scraping_frequency, :target_element, :active, :charset, :is_robots_allowed)
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_19_062901) do
+ActiveRecord::Schema.define(version: 2018_10_21_083648) do
 
   create_table "diff_codes", force: :cascade do |t|
     t.text "html"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2018_10_19_062901) do
     t.datetime "scraping_latest_date"
     t.string "directory_path"
     t.string "charset"
+    t.boolean "is_robots_allowed"
   end
 
 end

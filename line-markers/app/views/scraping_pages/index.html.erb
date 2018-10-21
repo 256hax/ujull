@@ -9,6 +9,7 @@
     <tr>
       <th>Title</th>
       <th>Target element</th>
+      <th>Is robots allowed</th>
       <th>Active</th>
       <th colspan="6"></th>
     </tr>
@@ -19,6 +20,7 @@
       <tr>
         <td class="url" title="<%= scraping_page.title %>"><%= link_to scraping_page.title, scraping_page.page_url, :target => "_blank" %></td>
         <td><%= scraping_page.target_element %></td>
+        <td><%= scraping_page.is_robots_allowed %></td>
         <td><%= scraping_page.active %></td>
         <td><%= link_to 'Show', scraping_page %></td>
         <td><%= link_to 'Edit', edit_scraping_page_path(scraping_page) %></td>

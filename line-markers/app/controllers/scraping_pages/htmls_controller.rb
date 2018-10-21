@@ -17,7 +17,7 @@ class ScrapingPages::HtmlsController < ApplicationController
       directory_path = @scraping_page.directory_path
       file_name = get_file_name(@scraping_page.id)
       body = request.response.body
-      
+
       save_html(directory_path, file_name, body, charset) # concerns/file_savable.rb
     }
   end
