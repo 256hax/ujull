@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Target element:</strong>
+  <%= @scraping_html_element.target_element %>
+</p>
+
+<p>
+  <strong>Scraping page:</strong>
+  <%= @scraping_html_element.scraping_page %>
+</p>
+
+<%= link_to 'Edit', edit_scraping_html_element_path(@scraping_html_element) %> |
+<%= link_to 'Back', scraping_html_elements_path %>

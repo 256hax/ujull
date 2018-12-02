@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_21_083648) do
+ActiveRecord::Schema.define(version: 2018_12_02_101640) do
 
   create_table "diff_codes", force: :cascade do |t|
     t.text "html"
@@ -27,10 +27,18 @@ ActiveRecord::Schema.define(version: 2018_10_21_083648) do
   create_table "scraped_codes", force: :cascade do |t|
     t.text "html"
     t.text "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "scraping_html_element_id"
+    t.index ["scraping_html_element_id"], name: "index_scraped_codes_on_scraping_html_element_id"
+  end
+
+  create_table "scraping_html_elements", force: :cascade do |t|
+    t.string "target_element"
     t.integer "scraping_page_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["scraping_page_id"], name: "index_scraped_codes_on_scraping_page_id"
+    t.index ["scraping_page_id"], name: "index_scraping_html_elements_on_scraping_page_id"
   end
 
   create_table "scraping_pages", force: :cascade do |t|

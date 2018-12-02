@@ -1,5 +1,5 @@
 class ScrapedCode < ApplicationRecord
-  belongs_to :scraping_page
+  belongs_to :scraping_html_element
   has_one :diff_code
 
   def latest_two(scraping_page_id)
