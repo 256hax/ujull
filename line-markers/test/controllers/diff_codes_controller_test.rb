@@ -19,7 +19,7 @@ class DiffCodesControllerTest < ActionDispatch::IntegrationTest
 
   # test "should create diff_code" do
   #   assert_difference('DiffCode.count') do
-  #     post diff_codes_url, params: { diff_code: { html: @diff_code.html, scraped_code_created_at: @diff_code.scraped_code_created_at, scraped_code_id: @diff_code.scraped_code_id, scraping_page_id: @diff_code.scraping_page_id, text: @diff_code.text } }
+  #     post diff_codes_url, params: { diff_code: { html: @diff_code.html, scraped_code_created_at: @diff_code.scraped_code_created_at, scraped_code_id: @diff_code.scraped_code_id, scraping_html_element_id: @diff_code.scraping_html_element_id, text: @diff_code.text } }
   #   end
   #
   #   assert_redirected_to diff_codes_url(DiffCode.last)
@@ -36,7 +36,7 @@ class DiffCodesControllerTest < ActionDispatch::IntegrationTest
   end
 
   # test "should update diff_code" do
-  #   patch diff_codes_url(@diff_code), params: { diff_code: { html: @diff_code.html, scraped_code_created_at: @diff_code.scraped_code_created_at, scraped_code_id: @diff_code.scraped_code_id, scraping_page_id: @diff_code.scraping_page_id, text: @diff_code.text } }
+  #   patch diff_codes_url(@diff_code), params: { diff_code: { html: @diff_code.html, scraped_code_created_at: @diff_code.scraped_code_created_at, scraped_code_id: @diff_code.scraped_code_id, scraping_html_element_id: @diff_code.scraping_html_element_id, text: @diff_code.text } }
   #
   #   assert_redirected_to diff_codes_url(@diff_code)
   # end

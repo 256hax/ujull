@@ -16,15 +16,17 @@ class ScrapedCodesController < ApplicationController
 
   # GET /scraped_codes/new
   def new
-    @scraping_page_id = params[:id]
-    @scraping_page = ScrapingPage.find(params[:id])
+    @scraping_html_element_id = params[:id]
+    @scraping_html_element = ScrapingHtmlElement.find(@scraping_html_element_id)
+
+    @scraping_page = ScrapingPage.find(@scraping_html_element.scraping_page_id)
     file_name = get_file_name(@scraping_page.id)
 
     # url is scraped html path(local)
-    url = "#{get_my_domain_and_port}/#{@scraping_page.directory_path}/#{file_name}"
+    url = "#{get_my_domain_and_port}/#{@scraping_page.directory_path}/#{file_name}" # concerns/scrapable.rb
     agent = Mechanize.new
     page = agent.get(url)
-    scraped_code = page.search(@scraping_page.target_element)
+    scraped_code = page.search(@scraping_html_element.target_element)
 
     @scraped_code = ScrapedCode.new
     @scraped_code.html = scraped_code
@@ -33,7 +35,7 @@ class ScrapedCodesController < ApplicationController
       @scraped_code.text = @scraped_code.text + s.inner_text + "\n"
     end
 
-    @scraped_code.scraping_page_id = @scraping_page_id
+    @scraped_code.scraping_html_element_id = @scraping_html_element_id
   end
 
   # GET /scraped_codes/1/edit
@@ -88,6 +90,6 @@ class ScrapedCodesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def scraped_code_params
-      params.require(:scraped_code).permit(:html, :text, :scraping_page_id)
+      params.require(:scraped_code).permit(:html, :text, :scraping_html_element_id)
     end
 end

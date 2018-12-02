@@ -18,11 +18,11 @@
   <tbody>
     <% @diff_codes.each do |diff_code| %>
       <tr>
-        <td><%= diff_code.scraping_page_id %></td>
+        <td><%= diff_code.scraping_html_element_id %></td>
         <td class="code" title="<%= diff_code.html %>"><%= diff_code.html %></td>
         <td class="code" title="<%= diff_code.text %>"><%= diff_code.text %></td>
         <td><%= diff_code.scraped_code_created_at %></td>
-        <td><%= diff_code.scraping_page %></td>
+        <td><%= diff_code.scraping_html_element_id %></td>
         <td><%= diff_code.scraped_code %></td>
         <td><%= link_to 'Show', diff_code %></td>
         <td><%= link_to 'Edit', edit_diff_code_path(diff_code) %></td>

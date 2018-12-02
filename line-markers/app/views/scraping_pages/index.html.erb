@@ -8,10 +8,7 @@
   <thead>
     <tr>
       <th>Title</th>
-      <th>Target element</th>
-      <th>Is robots allowed</th>
-      <th>Active</th>
-      <th colspan="6"></th>
+      <th colspan="5"></th>
     </tr>
   </thead>
 
@@ -19,14 +16,16 @@
     <% @scraping_pages.each do |scraping_page| %>
       <tr>
         <td class="url" title="<%= scraping_page.title %>"><%= link_to scraping_page.title, scraping_page.page_url, :target => "_blank" %></td>
-        <td><%= scraping_page.target_element %></td>
-        <td><%= scraping_page.is_robots_allowed %></td>
-        <td><%= scraping_page.active %></td>
         <td><%= link_to 'Show', scraping_page %></td>
         <td><%= link_to 'Edit', edit_scraping_page_path(scraping_page) %></td>
         <td><%= link_to 'Destroy', scraping_page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= link_to 'HTML取得', scraping_pages_create_htmls_path(scraping_page), method: :post %></td>
-        <td><%= link_to 'スクレイピング', new_scraped_codes_path(scraping_page) %></td>
+        <td><%= link_to 'スクレイピングルール登録', new_scraping_html_element_path(scraping_page) %></td>
+        <td>
+          <% scraping_page.scraping_html_elements.each do |scraping_html_element| %>
+            <p><%= scraping_html_element.target_element %>: <%= link_to 'スクレイピング実行', new_scraped_codes_path(scraping_html_element.id) %></p>
+          <% end %>
+        </td>
         <td><%= link_to '最新をDiff', new_diff_codes_latest_path(scraping_page) %></td>
       </tr>
     <% end %>

@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Target element</th>
+      <th>スクレイピング</th>
       <th>Scraping page</th>
       <th colspan="3"></th>
     </tr>
@@ -15,6 +16,7 @@
     <% @scraping_html_elements.each do |scraping_html_element| %>
       <tr>
         <td><%= scraping_html_element.target_element %></td>
+        <td><%= link_to 'スクレイピング実行',new_scraped_codes_path(scraping_html_element.id) %></td>
         <td><%= scraping_html_element.scraping_page %></td>
         <td><%= link_to 'Show', scraping_html_element %></td>
         <td><%= link_to 'Edit', edit_scraping_html_element_path(scraping_html_element) %></td>
@@ -25,5 +27,3 @@
 </table>
 
 <br>
-
-<%= link_to 'New Scraping Html Element', new_scraping_html_element_path %>

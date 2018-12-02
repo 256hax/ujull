@@ -11,7 +11,7 @@ class ScrapingHtmlElementsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new" do
-    get new_scraping_html_element_url
+    get new_scraping_html_element_url(@scraping_html_element.scraping_page_id)
     assert_response :success
   end
 

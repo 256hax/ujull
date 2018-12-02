@@ -10,14 +10,25 @@ class ScrapedCodesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get new" do
-    get new_scraped_codes_url(@scraped_code.scraping_page_id)
-    assert_response :success
-  end
+  # #---Skip save html file action---#
+  #
+  # test "should get new" do
+  #   host! 'localhost:3000' # setup your localhost address and port number.
+  #
+  #   get new_scraped_codes_url(@scraped_code.scraping_html_element_id)
+  #   assert_response :success
+  # end
 
   test "should create scraped_code" do
     assert_difference('ScrapedCode.count') do
-      post scraped_codes_url, params: { scraped_code: { html: @scraped_code.html, scraping_page_id: @scraped_code.scraping_page_id, text: @scraped_code.text } }
+      post scraped_codes_url,
+      params: {
+        scraped_code: {
+           html: @scraped_code.html,
+           text: @scraped_code.text,
+           scraping_html_element_id: @scraped_code.scraping_html_element_id
+        }
+      }
     end
 
     assert_redirected_to scraped_code_url(ScrapedCode.last)
@@ -34,7 +45,7 @@ class ScrapedCodesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update scraped_code" do
-    patch scraped_code_url(@scraped_code), params: { scraped_code: { html: @scraped_code.html, scraping_page_id: @scraped_code.scraping_page_id, text: @scraped_code.text } }
+    patch scraped_code_url(@scraped_code), params: { scraped_code: { html: @scraped_code.html, scraping_html_element_id: @scraped_code.scraping_html_element_id, text: @scraped_code.text } }
     assert_redirected_to scraped_code_url(@scraped_code)
   end
 

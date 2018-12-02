@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
+  # scraping_html_elements
+  get '/scraping_html_elements/new/:id', to: 'scraping_html_elements#new', as: :new_scraping_html_element
   resources :scraping_html_elements
+
   # scraping_pages
   namespace :scraping_pages do
     post 'htmls/create/:id', to: 'htmls#create', as: :create_htmls

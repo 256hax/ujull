@@ -5,10 +5,10 @@
 <table>
   <thead>
     <tr>
-      <th>Scraping Page ID</th>
+      <th>Scraped code ID</th>
       <th>Html</th>
       <th>Text</th>
-      <th>Scraping page</th>
+      <th>Scraping html element</th>
       <th colspan="4"></th>
     </tr>
   </thead>
@@ -16,10 +16,10 @@
   <tbody>
     <% @scraped_codes.each do |scraped_code| %>
       <tr>
-        <td><%= scraped_code.scraping_page_id %></td>
+        <td><%= scraped_code.id %></td>
         <td class="code" title="<%= scraped_code.html %>"><%= scraped_code.html %></td>
         <td class="code" title="<%= scraped_code.text %>"><%= scraped_code.text %></td>
-        <td><%= scraped_code.scraping_page %></td>
+        <td><%= scraped_code.scraping_html_element_id %></td>
         <td><%= link_to 'Show', scraped_code %></td>
         <td><%= link_to 'Edit', edit_scraped_code_path(scraped_code) %></td>
         <td><%= link_to 'Destroy', scraped_code, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -14,7 +14,10 @@ class ScrapingHtmlElementsController < ApplicationController
 
   # GET /scraping_html_elements/new
   def new
+    @scraping_page_id = params[:id]
+    
     @scraping_html_element = ScrapingHtmlElement.new
+    @scraping_html_element.scraping_page_id = @scraping_page_id
   end
 
   # GET /scraping_html_elements/1/edit

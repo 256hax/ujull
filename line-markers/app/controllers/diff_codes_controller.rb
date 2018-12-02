@@ -31,7 +31,7 @@ class DiffCodesController < ApplicationController
     @diff_code = DiffCode.new
 
     master_code = ScrapedCode.find(params[:id])
-    previous_code = ScrapedCode.new.previous_record(master_code.id, master_code.scraping_page_id, master_code.created_at)
+    previous_code = ScrapedCode.new.previous_record(master_code.id, master_code.scraping_html_element_id, master_code.created_at)
 
     no_previous_code(previous_code) # if can't diff, redirect to index
 
@@ -91,7 +91,7 @@ class DiffCodesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def diff_code_params
-      params.require(:diff_code).permit(:html, :text, :scraped_code_created_at, :scraping_page_id, :scraped_code_id)
+      params.require(:diff_code).permit(:html, :text, :scraped_code_created_at, :scraping_html_element_id, :scraped_code_id)
     end
 
     def no_previous_code(previous_code)
