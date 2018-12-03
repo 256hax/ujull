@@ -21,8 +21,7 @@ class ScrapingPagesControllerTest < ActionDispatch::IntegrationTest
       params: {
         scraping_page: {
           active: @scraping_page.active,
-          page_url: @scraping_page.page_url,
-          scraping_frequency: @scraping_page.scraping_frequency
+          page_url: @scraping_page.page_url
         }
       }
     end
@@ -45,8 +44,7 @@ class ScrapingPagesControllerTest < ActionDispatch::IntegrationTest
     params: {
       scraping_page: {
         active: @scraping_page.active,
-        page_url: @scraping_page.page_url,
-        scraping_frequency: @scraping_page.scraping_frequency
+        page_url: @scraping_page.page_url
       }
     }
     assert_redirected_to scraping_page_url(@scraping_page)

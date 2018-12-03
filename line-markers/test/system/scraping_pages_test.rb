@@ -16,8 +16,6 @@ class ScrapingPagesTest < ApplicationSystemTestCase
 
     fill_in "Active", with: @scraping_page.active
     fill_in "Page Url", with: @scraping_page.page_url
-    fill_in "Scraping Frequency", with: @scraping_page.scraping_frequency
-    fill_in "Target Element", with: @scraping_page.target_element
     click_on "Create Scraping page"
 
     assert_text "Scraping page was successfully created"

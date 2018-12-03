@@ -3,6 +3,6 @@
 one:
   id: 1
   page_url: https://example.com/
-  scraping_frequency: 10
   active: true
   directory_path: scraped_html/e/example.com
+  scraping_latest_date: 2018-12-03 22:20:05 +0900

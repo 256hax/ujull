@@ -17,7 +17,7 @@ class DiffCodesTest < ApplicationSystemTestCase
     fill_in "Html", with: @diff_code.html
     fill_in "Scraped Code Created At", with: @diff_code.scraped_code_created_at
     fill_in "Scraped Code", with: @diff_code.scraped_code_id
-    fill_in "Scraping Page", with: @diff_code.scraping_page_id
+    fill_in "Scraping Html Element", with: @diff_code.scraping_html_element_id
     fill_in "Text", with: @diff_code.text
     click_on "Create Diff code"
 
@@ -32,7 +32,7 @@ class DiffCodesTest < ApplicationSystemTestCase
     fill_in "Html", with: @diff_code.html
     fill_in "Scraped Code Created At", with: @diff_code.scraped_code_created_at
     fill_in "Scraped Code", with: @diff_code.scraped_code_id
-    fill_in "Scraping Page", with: @diff_code.scraping_page_id
+    fill_in "Scraping Html Element", with: @diff_code.scraping_html_element_id
     fill_in "Text", with: @diff_code.text
     click_on "Update Diff code"
 

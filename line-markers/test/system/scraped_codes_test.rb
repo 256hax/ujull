@@ -15,7 +15,7 @@ class ScrapedCodesTest < ApplicationSystemTestCase
     click_on "New Scraped Code"
 
     fill_in "Html", with: @scraped_code.html
-    fill_in "Scraping Page", with: @scraped_code.scraping_page_id
+    fill_in "Scraping Html Element", with: @scraped_code.scraping_html_element_id
     fill_in "Text", with: @scraped_code.text
     click_on "Create Scraped code"
 
@@ -28,7 +28,7 @@ class ScrapedCodesTest < ApplicationSystemTestCase
     click_on "Edit", match: :first
 
     fill_in "Html", with: @scraped_code.html
-    fill_in "Scraping Page", with: @scraped_code.scraping_page_id
+    fill_in "Scraping Html Element", with: @scraped_code.scraping_html_element_id
     fill_in "Text", with: @scraped_code.text
     click_on "Update Scraped code"
 
