@@ -17,7 +17,14 @@ class ScrapingPagesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create scraping_page" do
     assert_difference('ScrapingPage.count') do
-      post scraping_pages_url, params: { scraping_page: { active: @scraping_page.active, page_url: @scraping_page.page_url, scraping_frequency: @scraping_page.scraping_frequency, target_element: @scraping_page.target_element } }
+      post scraping_pages_url,
+      params: {
+        scraping_page: {
+          active: @scraping_page.active,
+          page_url: @scraping_page.page_url,
+          scraping_frequency: @scraping_page.scraping_frequency
+        }
+      }
     end
 
     assert_redirected_to scraping_page_url(ScrapingPage.last)
@@ -34,7 +41,14 @@ class ScrapingPagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update scraping_page" do
-    patch scraping_page_url(@scraping_page), params: { scraping_page: { active: @scraping_page.active, page_url: @scraping_page.page_url, scraping_frequency: @scraping_page.scraping_frequency, target_element: @scraping_page.target_element } }
+    patch scraping_page_url(@scraping_page),
+    params: {
+      scraping_page: {
+        active: @scraping_page.active,
+        page_url: @scraping_page.page_url,
+        scraping_frequency: @scraping_page.scraping_frequency
+      }
+    }
     assert_redirected_to scraping_page_url(@scraping_page)
   end
 

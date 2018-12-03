@@ -93,6 +93,6 @@ class ScrapingPagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def scraping_page_params
-      params.require(:scraping_page).permit(:page_url, :scraping_frequency, :target_element, :active, :charset, :is_robots_allowed)
+      params.require(:scraping_page).permit(:page_url, :scraping_frequency, :active, :charset, :is_robots_allowed)
     end
 end

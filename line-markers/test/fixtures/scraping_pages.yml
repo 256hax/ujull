@@ -4,5 +4,5 @@ one:
   id: 1
   page_url: https://example.com/
   scraping_frequency: 10
-  target_element: title
   active: true
+  directory_path: scraped_html/e/example.com
