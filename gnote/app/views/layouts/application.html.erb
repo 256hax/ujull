@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gnote</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <!--Import Google Icon Font-->
+    <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c' %>
+    <%= stylesheet_link_tag 'https://fonts.googleapis.com/icon?family=Material+Icons' %>
+    <!--Import materialize.css-->
+    <%= stylesheet_link_tag 'materialize.min' %>
+    <%= stylesheet_link_tag 'common' %>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!--JavaScript at end of body for optimized loading-->
+    <%= javascript_include_tag 'materialize.min' %>
+  </head>
+
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="orange darken-2" role="navigation">
+      <div class="nav-wrapper container"><%= link_to 'みんなのほめノート', root_path %>
+        <ul class="right hide-on-med-and-down">
+          <li><%= link_to 'ほめノートとは？', root_path %></li>
+          <li><%= link_to '使い方', root_path %></li>
+          <li><%= link_to '書いてみる', root_path %></li>
+        </ul>
+
+        <ul id="nav-mobile" class="side-nav">
+          <li><%= link_to 'ほめノートとは？', root_path %></li>
+          <li><%= link_to '使い方', root_path %></li>
+          <li><%= link_to '書いてみる', root_path %></li>
+        </ul>
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+      </div>
+    </nav>
+
+    <%= yield %>
+
+    <!-- Floating Action Button -->
+    <div class="fixed-action-btn">
+      <a class="btn-floating btn-large waves-effect waves-light red" href="<%= new_message_path %>">
+        <i class="large material-icons">mode_edit</i>
+      </a>
+    </div>
+
+    <footer class="page-footer orange">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">みんなのほめノート</h5>
+            <p class="grey-text text-lighten-4">まいにち、自分をほめよう！ 自分へのほめ言葉が匿名で投稿できる「みんなのほめノート」</p>
+            <p class="grey-text text-lighten-4"><a class="grey-text text-lighten-4" href="https://github.com/256hax/tanebox" target="_blank">< image 'GitHub-Mark-Light-32px.png' ></a></p>
+            <p class="grey-text text-lighten-4">Built with Ruby on <a href="http://hanamirb.org/" target="_blank">Hanami 🌸</a></p>
+          </div>
+          <div class="col l4 offset-l2 s12">
+            <h5 class="white-text">Links</h5>
+            <ul>
+              <li><a class="grey-text text-lighten-3" href="#">ほめノートとは？</a></li>
+              <li><a class="grey-text text-lighten-3" href="#">ほめノートの使い方</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright orange darken-2">
+        <div class="container">
+          <a class="grey-text text-lighten-4" href="http://256hax.in/" target="_blank">© 256hax</a>
+          <a class="grey-text text-lighten-4 right" href="/">→ tanebox</a>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+</html>
