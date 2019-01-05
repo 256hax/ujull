@@ -1,36 +1,84 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <h1 class="orange-text text-darken-3">みんなのほめノート</h3>
+  <p>まいにち、自分をほめよう！ 自分へのほめ言葉が匿名で投稿できる「みんなのほめノート」</p>
 
-<h1>Messages</h1>
+  <div class="row">
 
-<table>
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Body</th>
-      <th>Author hash ip</th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
+    <div class="col s12 m7">
+      <div class="card">
+        <div class="card-image">
+          < image 'box-2953722_640.jpg' >
+        </div>
+        <div class="card-content">
+          <p>人間は、ほめられるとそれが自分へのご褒美となって、モチベーションや思考力が高まることをご存知ですか？ そして自分自身をほめても効果があると言われています。</p>
+        </div>
+        <div class="card-action">
+          <a href="#">もっと詳しく見る</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <tbody>
-    <% @messages.each do |message| %>
-      <tr>
-        <td><%= message.id %></td>
-        <td><%= message.body %>
-          <% message.comments.each do |c| %>
-            <p>-> <%= c.body %></p>
-          <% end %>
-        </td>
-        <td><%= message.author_hash_ip %></td>
-        <td><%= link_to 'Show', message %></td>
-        <td><%= link_to 'Edit', edit_message_path(message) %></td>
-        <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'コメントする', new_comment_path(message.id) %></td>
-      </tr>
+  <div class="row">
+    <div class="section">
+      <div class="col s12">
+        <a class="btn-floating btn-large waves-effect waves-light red" href="<%= new_message_path %>"><i class="material-icons">mode_edit</i></a>
+      </div>
+    </div>
+    <div class="section">
+      <div class="col s12">
+        <p>投稿は匿名になります。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Messages -->
+  <% @messages.each do |m| %>
+    <div class="row" id="message-<%= m.id %>">
+      <div class="divider"></div>
+      <div class="section">
+        <div class="col s12">
+          <span class="grey-text">匿名さん・< Date ></span>
+        </div>
+        <div class="col s12">
+          <p><%= m.body %></p>
+        </div>
+        <div class="col s1">
+          <a href="<%= new_comment_path(m.id) %>" rel="nofollow"><i class="material-icons">reply</i></a>
+        </div>
+        <!-- Like -->
+        <div class="col s3">
+          like
+        </div>
+        <!-- Action -->
+        <div class="col s3">
+          <%= link_to '削除', message_path(m.id), method: :delete %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Replies -->
+    <% m.comments.each do |c| %>
+      <div class="row" id="reply-<%= c.id %>">
+        <div class="divider"></div>
+        <div class="section">
+          <div class="col s11 offset-s1">
+            <span class="grey-text">匿名さん・< Date ></span>
+          </div>
+          <div class="col s11 offset-s1">
+            <p><span class="grey-text text-darken-2"><%= c.body %></span></p>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  <% end %>
 
-<br>
+  <div class="row">
+    <div class="section">
+      <h4>こんなほめ方もあります</h4>
+      <!-- Twitter Widgets a tag source here -->
+      <a class="twitter-timeline"  href="https://twitter.com/search?q=%E5%81%89%E3%81%84%20%E3%81%99%E3%81%94%E3%81%84" data-widget-id="960678433960308736">Tweets about 偉い すごい</a>
+    </div>
+  </div>
 
-<%= link_to 'New Message', new_message_path %>
+</div>

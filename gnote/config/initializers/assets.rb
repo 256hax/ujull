@@ -16,6 +16,7 @@ Rails.application.config.assets.paths << Rails.root.join('vendor', 'javascripts'
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 Rails.application.config.assets.precompile += %w(
   materialize.min.css
-  materialize.min.js
   common.css
+  materialize.min.js
+  common.js
 )
