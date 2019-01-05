@@ -39,7 +39,18 @@
       <li><%= link_to '書いてみる', root_path %></li>
     </ul>
 
-    <p id="notice"><%= notice %></p>
+    <% if notice %>
+      <div class="container">
+        <div class="row">
+          <div class="card blue lighten-5">
+            <div class="card-content blue-text">
+              <%= notice %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
     <%= yield %>
 
     <!-- Floating with Scrollspy Action Button -->
