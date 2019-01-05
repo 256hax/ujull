@@ -1,24 +1,28 @@
-<%= form_with(model: comment, url: comment_path, local: true) do |form| %>
-  <% if comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+<div class="container">
+  <h3 class="orange-text text-darken-3">ほめノートにコメントを書く</h3>
 
-      <ul>
-      <% comment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <%= form_with(model: comment, url: comment_path, local: true) do |form| %>
+    <% if comment.errors.any? %>
+      <div id="error_explanation" class="row">
+        <div class="card red lighten-5">
+          <div class="card-content red-text">
+            <%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:
+          </div>
+        </div>
+
+        <ul>
+        <% comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="input-field">
+      <%= form.label :body, "「#{@message.body}」へのコメントは・・・" %>
+      <%= form.text_area :body, class: 'materialize-textarea' %>
+      <%= hidden_field :comment, :message_id %>
+      <%= button_tag 'コメントを書く', type: 'submit', class: 'btn waves-effect waves-light' %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :body %>
-    <%= form.text_field :body %>
-  </div>
-
-  <%= hidden_field :comment, :message_id %>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

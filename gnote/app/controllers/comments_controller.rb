@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
   # GET /comments/new
   def new
     @comment = Comment.new
-    @comment.message_id = @message.id # for hidden_field in view
+    @comment.message_id = @message.id # hidden_field in view. This code write to Controller for Validation.
   end
 
   # GET /comments/1/edit
@@ -26,12 +26,11 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    p comment_params
     @comment = Comment.new(comment_params)
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to messages_path, notice: 'Comment was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { render :new }

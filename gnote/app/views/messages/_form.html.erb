@@ -1,22 +1,27 @@
-<%= form_with(model: message, local: true) do |form| %>
-  <% if message.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
+<div class="container">
+  <h3 class="orange-text text-darken-3">ほめノートに書く</h3>
 
-      <ul>
-      <% message.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <%= form_with(model: message, local: true) do |form| %>
+    <% if message.errors.any? %>
+      <div id="error_explanation" class="row">
+        <div class="card red lighten-5">
+          <div class="card-content red-text">
+            <%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:
+          </div>
+        </div>
+
+        <ul>
+        <% message.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="input-field">
+      <%= form.label :body, '今日の自分へのほめ言葉は・・・' %>
+      <%= form.text_area :body, class: 'materialize-textarea' %>
+      <%= button_tag 'ほめノートに書く', type: 'submit', class: 'btn waves-effect waves-light' %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

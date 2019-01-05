@@ -52,7 +52,7 @@
         </div>
         <!-- Action -->
         <div class="col s3">
-          <%= link_to '削除', message_path(m.id), method: :delete %>
+          <%= link_to '削除', message_path(m.id), method: :delete, data: { confirm: '削除しますか？' } %>
         </div>
       </div>
     </div>
