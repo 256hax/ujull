@@ -1,5 +1,5 @@
 <div class="container">
-  <h3 class="orange-text text-darken-3">ほめノートにコメントを書く</h3>
+  <h1 class="orange-text text-darken-3"><%= title 'ほめコメントを書く' %></h1>
 
   <%= form_with(model: comment, url: comment_path, local: true) do |form| %>
     <% if comment.errors.any? %>

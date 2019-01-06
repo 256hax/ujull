@@ -1,5 +1,5 @@
 <div class="container">
-  <h3 class="orange-text text-darken-3">ほめノートに書く</h3>
+  <h1 class="orange-text text-darken-3"><%= title 'ほめノートに書く' %></h1>
 
   <%= form_with(model: message, local: true) do |form| %>
     <% if message.errors.any? %>
