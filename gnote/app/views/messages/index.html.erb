@@ -38,7 +38,7 @@
       <div class="divider"></div>
       <div class="section">
         <div class="col s12">
-          <span class="grey-text">匿名さん・< Date ></span>
+          <span class="grey-text">匿名さん・<%= time_ago_in_words(m.created_at) %>前</span>
         </div>
         <div class="col s12">
           <p><%= m.body %></p>
@@ -63,7 +63,7 @@
         <div class="divider"></div>
         <div class="section">
           <div class="col s11 offset-s1">
-            <span class="grey-text">匿名さん・< Date ></span>
+            <span class="grey-text">匿名さん・<%= time_ago_in_words(c.created_at) %>前</span>
           </div>
           <div class="col s11 offset-s1">
             <p><span class="grey-text text-darken-2"><%= c.body %></span></p>

@@ -6,15 +6,14 @@
       <div id="error_explanation" class="row">
         <div class="card red lighten-5">
           <div class="card-content red-text">
-            <%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:
+            投稿できませんでした：
+            <ul>
+            <% comment.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
           </div>
         </div>
-
-        <ul>
-        <% comment.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
       </div>
     <% end %>
 

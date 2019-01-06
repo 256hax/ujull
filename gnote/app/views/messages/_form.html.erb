@@ -6,15 +6,14 @@
       <div id="error_explanation" class="row">
         <div class="card red lighten-5">
           <div class="card-content red-text">
-            <%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:
+            投稿できませんでした：
+            <ul>
+            <% message.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
           </div>
         </div>
-
-        <ul>
-        <% message.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
       </div>
     <% end %>
 
