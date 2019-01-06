@@ -26,17 +26,18 @@
         <%= link_to '😊みんなのほめノート🌟', root_path %>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-          <li><%= link_to 'ほめノートとは？', root_path %></li>
-          <li><%= link_to '使い方', root_path %></li>
-          <li><%= link_to '書いてみる', root_path %></li>
+          <li><%= link_to 'ほめノートとは？', articles_path('about') %></li>
+          <li><%= link_to '使い方', articles_path('howto') %></li>
+          <li><%= link_to '書いてみる', new_message_path %></li>
         </ul>
       </div>
     </nav>
 
     <ul class="sidenav" id="mobile-demo">
-      <li><%= link_to 'ほめノートとは？', root_path %></li>
-      <li><%= link_to '使い方', root_path %></li>
-      <li><%= link_to '書いてみる', root_path %></li>
+      <li><%= link_to 'TOP', root_path %></li>
+      <li><%= link_to 'ほめノートとは？', articles_path('about') %></li>
+      <li><%= link_to '使い方', articles_path('howto') %></li>
+      <li><%= link_to '書いてみる', new_message_path %></li>
     </ul>
 
     <% if notice %>
@@ -71,8 +72,8 @@
           <div class="col l4 offset-l2 s12">
             <h5 class="white-text">メニュー</h5>
             <ul>
-              <li><a class="grey-text text-lighten-3" href="#">ほめノートとは？</a></li>
-              <li><a class="grey-text text-lighten-3" href="#">ほめノートの使い方</a></li>
+              <li><a class="grey-text text-lighten-3" href="<%= articles_path('about') %>">ほめノートとは？</a></li>
+              <li><a class="grey-text text-lighten-3" href="<%= articles_path('howto') %>">ほめノートの使い方</a></li>
             </ul>
           </div>
         </div>
