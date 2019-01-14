@@ -1,6 +1,8 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
   before_action :set_message, only: [:new]
+  include Encryptable # concerns/encryptable.rb
+  include Informable # concerns/informable.rb
 
   def index
     @comments = Comment.all
@@ -19,6 +21,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
+    @comment.author_hash_ip = encrypt(get_remote_ip)
 
     respond_to do |format|
       if @comment.save

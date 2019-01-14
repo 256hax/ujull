@@ -1,5 +1,7 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
+  include Encryptable # concerns/encryptable.rb
+  include Informable # concerns/informable.rb
 
   def index
     @messages = Message.recent(20).includes(:comments)
@@ -17,6 +19,7 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new(message_params)
+    @message.author_hash_ip = encrypt(get_remote_ip)
 
     respond_to do |format|
       if @message.save
