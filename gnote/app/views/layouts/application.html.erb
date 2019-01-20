@@ -52,6 +52,18 @@
       </div>
     <% end %>
 
+    <% if alert %>
+      <div class="container">
+        <div class="row">
+          <div class="card red lighten-5">
+            <div class="card-content red-text">
+              <%= alert %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
     <%= yield %>
 
     <!-- Floating with Scrollspy Action Button -->

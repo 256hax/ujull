@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get '/articles/:action', to: 'static_pages#:action', as: :articles
 
   scope :comments do
