@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-  before_action :authenticate_user!, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:show, :new, :edit, :update, :destroy]
   before_action :set_message, only: [:show, :edit, :update, :destroy]
   include Encryptable # concerns/encryptable.rb
   include Informable # concerns/informable.rb
@@ -12,14 +12,14 @@ class MessagesController < ApplicationController
   end
 
   def new
-    @message = Message.new
+    @message = current_user.messages.new
   end
 
   def edit
   end
 
   def create
-    @message = Message.new(message_params)
+    @message = current_user.messages.new(message_params)
     @message.author_hash_ip = encrypt(get_remote_ip)
 
     respond_to do |format|
@@ -57,6 +57,8 @@ class MessagesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_message
       @message = Message.find(params[:id])
+      @note = current_user.messages.find_by(id: params[:id])
+      redirect_to root_path if @note.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
