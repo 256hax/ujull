@@ -12,12 +12,15 @@
 
 ActiveRecord::Schema.define(version: 2019_01_02_151807) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "comments", force: :cascade do |t|
     t.string "body"
     t.string "author_hash_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "message_id"
+    t.bigint "message_id"
     t.index ["message_id"], name: "index_comments_on_message_id"
   end
 
@@ -28,4 +31,5 @@ ActiveRecord::Schema.define(version: 2019_01_02_151807) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "comments", "messages"
 end
