@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   scope :comments do
     post '/:message_id/', to: 'comments#create', as: :comment
     get '/:message_id/new', to: 'comments#new', as: :new_comment
+    get '/', to: 'comments#index', as: :index_comment
   end
 
   resources :messages

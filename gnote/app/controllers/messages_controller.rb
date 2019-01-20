@@ -56,9 +56,8 @@ class MessagesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_message
-      @message = Message.find(params[:id])
-      @note = current_user.messages.find_by(id: params[:id])
-      redirect_to root_path if @note.nil?
+      @message = current_user.messages.find_by(id: params[:id])
+      redirect_to root_path if @message.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
