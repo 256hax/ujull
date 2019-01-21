@@ -1,8 +1,18 @@
 require 'test_helper'
 
 class MessagesControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::ControllerHelpers
+
   setup do
     @message = messages(:one)
+
+    @request.env['devise.mapping'] = Devise.mappings[:user]
+    @user = users(:yamada)
+    sign_in(@user)
+  end
+
+  teardown do
+    sign_out(@user)
   end
 
   test "should get index" do
@@ -11,6 +21,10 @@ class MessagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new" do
+    # @request.env['devise.mapping'] = Devise.mappings[:user]
+    # sign_in users(:yamada)
+
+    #get :new
     get new_message_url
     assert_response :success
   end
@@ -21,21 +35,6 @@ class MessagesControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to message_url(Message.last)
-  end
-
-  test "should show message" do
-    get message_url(@message)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_message_url(@message)
-    assert_response :success
-  end
-
-  test "should update message" do
-    patch message_url(@message), params: { message: { author_hash_ip: @message.author_hash_ip, body: @message.body } }
-    assert_redirected_to message_url(@message)
   end
 
   test "should destroy message" do

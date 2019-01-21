@@ -22,18 +22,6 @@ class MessagesTest < ApplicationSystemTestCase
     click_on "Back"
   end
 
-  test "updating a Message" do
-    visit messages_url
-    click_on "Edit", match: :first
-
-    fill_in "Author hash ip", with: @message.author_hash_ip
-    fill_in "Body", with: @message.body
-    click_on "Update Message"
-
-    assert_text "Message was successfully updated"
-    click_on "Back"
-  end
-
   test "destroying a Message" do
     visit messages_url
     page.accept_confirm do

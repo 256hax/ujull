@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
-  before_action :authenticate_user!, only: [:show, :new, :edit, :update, :destroy]
-  before_action :set_message, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :destroy]
+  before_action :set_message, only: [:destroy]
   include Encryptable # concerns/encryptable.rb
   include Informable # concerns/informable.rb
 
@@ -8,14 +8,8 @@ class MessagesController < ApplicationController
     @messages = Message.recent(20).includes(:comments)
   end
 
-  def show
-  end
-
   def new
     @message = current_user.messages.new
-  end
-
-  def edit
   end
 
   def create
@@ -28,18 +22,6 @@ class MessagesController < ApplicationController
         format.json { render :show, status: :created, location: @message }
       else
         format.html { render :new }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def update
-    respond_to do |format|
-      if @message.update(message_params)
-        format.html { redirect_to @message, notice: '書き込みました！' }
-        format.json { render :show, status: :ok, location: @message }
-      else
-        format.html { render :edit }
         format.json { render json: @message.errors, status: :unprocessable_entity }
       end
     end

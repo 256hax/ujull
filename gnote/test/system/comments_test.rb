@@ -21,19 +21,7 @@ class CommentsTest < ApplicationSystemTestCase
     assert_text "Comment was successfully created"
     click_on "Back"
   end
-
-  test "updating a Comment" do
-    visit comments_url
-    click_on "Edit", match: :first
-
-    fill_in "Author hash ip", with: @comment.author_hash_ip
-    fill_in "Body", with: @comment.body
-    click_on "Update Comment"
-
-    assert_text "Comment was successfully updated"
-    click_on "Back"
-  end
-
+  
   test "destroying a Comment" do
     visit comments_url
     page.accept_confirm do

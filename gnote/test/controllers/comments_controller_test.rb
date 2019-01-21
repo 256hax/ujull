@@ -1,17 +1,26 @@
 require 'test_helper'
 
 class CommentsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::ControllerHelpers
+
   setup do
     @comment = comments(:one)
+
+    @request.env['devise.mapping'] = Devise.mappings[:user]
+    @user = users(:yamada)
+    sign_in(@user)
   end
 
-  test "should get index" do
-    get comments_url
-    assert_response :success
+  teardown do
+    sign_out(@user)
   end
 
   test "should get new" do
-    get new_comment_url
+    sign_in users(:yamada)
+
+    #get :new
+
+    get new_comment_url(1)
     assert_response :success
   end
 
@@ -21,21 +30,6 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to comment_url(Comment.last)
-  end
-
-  test "should show comment" do
-    get comment_url(@comment)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_comment_url(@comment)
-    assert_response :success
-  end
-
-  test "should update comment" do
-    patch comment_url(@comment), params: { comment: { author_hash_ip: @comment.author_hash_ip, body: @comment.body } }
-    assert_redirected_to comment_url(@comment)
   end
 
   test "should destroy comment" do
