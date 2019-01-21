@@ -29,8 +29,10 @@
           <li><%= link_to 'ほめノートとは？', articles_path('about') %></li>
           <li><%= link_to '使い方', articles_path('howto') %></li>
           <li><%= link_to '書いてみる', new_message_path %></li>
-          <li><%= link_to 'アカウント登録', new_user_registration_path %></li>
-          <li><%= link_to 'ログイン', new_user_session_path %></li>
+          <% unless signed_in? %>
+            <li><%= link_to 'アカウント登録', new_user_registration_path %></li>
+            <li><%= link_to 'ログイン', new_user_session_path %></li>
+          <% end %>
           <% if signed_in? %>
             <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
           <% end %>
@@ -73,7 +75,7 @@
 
     <!-- Floating with Scrollspy Action Button -->
     <div class="fixed-action-btn">
-      <a class="btn-floating btn-large waves-effect waves-light red" href="<%= new_message_path %>">
+      <a class="btn-floating btn-large waves-effect waves-light light-blue lighten-1" href="<%= new_message_path %>">
         <i class="large material-icons">mode_edit</i>
       </a>
     </div>

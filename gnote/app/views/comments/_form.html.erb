@@ -19,14 +19,14 @@
 
     <div class="input-field">
       <%= form.label :body, "「#{@message.body}」へのコメントは・・・" %>
-      <%= form.text_area :body, class: 'materialize-textarea', onkeyup: 'ShowTextLength(value)' %>
+      <%= form.text_area :body, class: 'materialize-textarea', autofocus: true, onkeyup: 'ShowTextLength(value)' %>
 
       <div class="section grey-text">
         <span id="inputlength">0</span> / 280文字
       </div>
 
       <%= hidden_field :comment, :message_id %>
-      <%= button_tag 'コメントを書く', type: 'submit', class: 'btn waves-effect waves-light' %>
+      <%= button_tag 'コメントを書く', type: 'submit', class: 'btn waves-effect waves-light light-blue lighten-1' %>
     </div>
   <% end %>
 </div>
