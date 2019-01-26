@@ -36,7 +36,7 @@ RSpec.describe MessagesController, type: :controller do
 
       it "http status is 200" do
         get :new
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
   end
