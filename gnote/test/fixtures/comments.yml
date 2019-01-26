@@ -3,13 +3,11 @@
 one:
   id: 1
   body: メリハリできるとは、さすがですね。
-  author_hash_ip: M+cpH2g8nYBcDZgIcQ==-3xX65WXher9gqoFfn--dPAshVOfBTLTvetFJK/5qw==
   message_id: 1
   user_id: 2
 
 two:
   id: 2
   body: 全部回収するとは・・・すごい！！！
-  author_hash_ip: y0mO7b3ezCRDBunI9Q==--TGzkY3BBPn5Isn/W--I6HqGDNl5J2FR+x+zpcFsw==
   message_id: 2
   user_id: 1

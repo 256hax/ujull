@@ -1,14 +1,17 @@
 require 'test_helper'
 
 class MessagesControllerTest < ActionDispatch::IntegrationTest
-  include Devise::Test::ControllerHelpers
+  include Devise::Test::IntegrationHelpers
 
   setup do
-    @message = messages(:one)
+    host! 'localhost:3000'
 
-    @request.env['devise.mapping'] = Devise.mappings[:user]
-    @user = users(:yamada)
+    #@request.env['devise.mapping'] = Devise.mappings[:user]
+    @user = users(:one)
     sign_in(@user)
+    #sign_in users(:one), scope: :user
+
+    @message = messages(:one)
   end
 
   teardown do
@@ -34,7 +37,7 @@ class MessagesControllerTest < ActionDispatch::IntegrationTest
       post messages_url, params: { message: { author_hash_ip: @message.author_hash_ip, body: @message.body } }
     end
 
-    assert_redirected_to message_url(Message.last)
+    assert_redirected_to root_path
   end
 
   test "should destroy message" do
@@ -42,6 +45,6 @@ class MessagesControllerTest < ActionDispatch::IntegrationTest
       delete message_url(@message)
     end
 
-    assert_redirected_to messages_url
+    assert_redirected_to root_path
   end
 end

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
-  
-  get '/articles/:action', to: 'static_pages#:action', as: :articles
+
+  get '/articles/:action', to: 'static_pages#action', as: :articles
 
   scope :comments do
     post '/:message_id/', to: 'comments#create', as: :comment

@@ -1,14 +1,17 @@
 require 'test_helper'
 
 class CommentsControllerTest < ActionDispatch::IntegrationTest
-  include Devise::Test::ControllerHelpers
+  include Devise::Test::IntegrationHelpers
 
   setup do
-    @comment = comments(:one)
+    host! 'localhost:3000'
 
-    @request.env['devise.mapping'] = Devise.mappings[:user]
-    @user = users(:yamada)
+    #@request.env['devise.mapping'] = Devise.mappings[:user]
+    @user = users(:one)
     sign_in(@user)
+    #sign_in users(:one), scope: :user
+
+    @comment = comments(:one)
   end
 
   teardown do
@@ -16,8 +19,6 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new" do
-    sign_in users(:yamada)
-
     #get :new
 
     get new_comment_url(1)
@@ -26,17 +27,17 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create comment" do
     assert_difference('Comment.count') do
-      post comments_url, params: { comment: { author_hash_ip: @comment.author_hash_ip, body: @comment.body } }
+      post comment_url(1), params: { comment: { author_hash_ip: @comment.author_hash_ip, body: @comment.body } }
     end
 
-    assert_redirected_to comment_url(Comment.last)
+    assert_redirected_to root_url
   end
 
-  test "should destroy comment" do
-    assert_difference('Comment.count', -1) do
-      delete comment_url(@comment)
-    end
-
-    assert_redirected_to comments_url
-  end
+  # test "should destroy comment" do
+  #   assert_difference('Comment.count', -1) do
+  #     delete comment_url(@comment)
+  #   end
+  #
+  #   assert_redirected_to comments_url
+  # end
 end

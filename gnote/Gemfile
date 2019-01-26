@@ -48,10 +48,14 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # --- debugger ---
-  gem 'pry-rails'  # rails consoleでirbの代わりにpryを使う
-  gem 'pry-doc'    # methodを表示
-  gem 'pry-byebug' # デバッグを実施
-  gem 'pry-stack_explorer' # スタックをたどる
+  gem 'pry-rails'  # pry instead of irb on rails console
+  gem 'pry-doc'    # display method
+  gem 'pry-byebug' # for debug
+  gem 'pry-stack_explorer' # tracking stack
+
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :development do
