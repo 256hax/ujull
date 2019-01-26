@@ -18,15 +18,24 @@ RSpec.describe MessagesController, type: :controller do
   # MessagesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  describe "GET #index" do
+    login_user
+
+    it "response successfully" do
+      get :index
+      expect(response).to be_successful
+    end
+  end
+
   describe "GET #new" do
     context "when user is not logged in" do
-      it "http status is 302" do
+      it "redirect to login page" do
         get :new
-        expect(response).to have_http_status(302)
+        expect(response).to redirect_to(new_user_session_path)
       end
     end
 
-    context "when user log in" do
+    context "when user logged in" do
       login_user
 
       it "should have a current_user" do
@@ -34,7 +43,7 @@ RSpec.describe MessagesController, type: :controller do
         expect(subject.current_user).to_not eq(nil)
       end
 
-      it "http status is 200" do
+      it "response successfully" do
         get :new
         expect(response).to be_successful
       end
