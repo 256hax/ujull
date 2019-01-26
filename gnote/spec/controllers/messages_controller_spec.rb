@@ -19,25 +19,25 @@ RSpec.describe MessagesController, type: :controller do
   let(:valid_session) { {} }
 
   describe "GET #new" do
-    it "When GET with not login" do
-      get :new
-      expect(response).to have_http_status(302)
-    end
-  end
-
-  describe "GET #index" do
-    login_user
-
-    it "should have a current_user" do
-      # note the fact that you should remove the "validate_session" parameter if this was a scaffold-generated controller
-      expect(subject.current_user).to_not eq(nil)
+    context "when user is not logged in" do
+      it "http status is 302" do
+        get :new
+        expect(response).to have_http_status(302)
+      end
     end
 
-    it "should get index" do
-      # Note, rails 3.x scaffolding may add lines like get :index, {}, valid_session
-      # the valid_session overrides the devise login. Remove the valid_session from your specs
-      get 'index'
-      response.should be_success
+    context "when user log in" do
+      login_user
+
+      it "should have a current_user" do
+        # note the fact that you should remove the "validate_session" parameter if this was a scaffold-generated controller
+        expect(subject.current_user).to_not eq(nil)
+      end
+
+      it "http status is 200" do
+        get :new
+        expect(response).to be_success
+      end
     end
   end
 
