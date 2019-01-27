@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  %w(about howto).each do | action |
+  %w(
+    about
+    howto
+  ).each do | action |
     get "articles/#{action}", controller: 'static_pages', action: action
   end
 
