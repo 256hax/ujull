@@ -124,20 +124,4 @@ RSpec.describe MessagesController, type: :controller do
       end
     end
   end
-
-  # describe "DELETE #destroy" do
-  #   it "destroys the requested message" do
-  #     message = Message.create! valid_attributes
-  #     expect {
-  #       delete :destroy, params: {id: message.to_param}, session: valid_session
-  #     }.to change(Message, :count).by(-1)
-  #   end
-  #
-  #   it "redirects to the messages list" do
-  #     message = Message.create! valid_attributes
-  #     delete :destroy, params: {id: message.to_param}, session: valid_session
-  #     expect(response).to redirect_to(messages_url)
-  #   end
-  # end
-
 end
