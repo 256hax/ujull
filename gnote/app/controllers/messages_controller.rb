@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :destroy]
   before_action :set_message, only: [:destroy]
   include Encryptable # concerns/encryptable.rb
   include Informable # concerns/informable.rb
