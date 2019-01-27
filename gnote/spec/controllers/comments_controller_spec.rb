@@ -21,15 +21,6 @@ RSpec.describe CommentsController, type: :controller do
   # MessagesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  # describe "GET #index" do
-  #   login_user
-  #
-  #   it "response successfully" do
-  #     get :index
-  #     expect(response).to be_successful
-  #   end
-  # end
-
   describe "GET #new" do
     context "when user is not logged in" do
       it "redirect to login page" do
@@ -39,6 +30,8 @@ RSpec.describe CommentsController, type: :controller do
     end
 
     context "when user logged in" do
+      # behavior: run before(:each)
+      # source: spec/support/controller_macros.rb
       login_user
 
       before do
@@ -84,6 +77,8 @@ RSpec.describe CommentsController, type: :controller do
     end
 
     context "when user is not logged in" do
+      # behavior: run before(:each)
+      # source: spec/support/controller_macros.rb
       logout_user
 
       it "redirect to login page" do

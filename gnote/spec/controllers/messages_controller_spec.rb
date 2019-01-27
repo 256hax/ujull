@@ -20,6 +20,8 @@ RSpec.describe MessagesController, type: :controller do
   let(:valid_session) { {} }
 
   describe "GET #index" do
+    # behavior: run before(:each)
+    # source: spec/support/controller_macros.rb
     login_user
 
     it "response successfully" do
@@ -74,10 +76,50 @@ RSpec.describe MessagesController, type: :controller do
     end
 
     context "when user is not logged in" do
+      # behavior: run before(:each)
+      # source: spec/support/controller_macros.rb
       logout_user
 
       it "redirect to login page" do
         post :create, params: { message: valid_attributes }, session: valid_session
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+  end
+
+  describe "POST #destroy" do
+    login_user
+
+    before do
+      @message = FactoryBot.create(:message)
+    end
+
+    context "with valid params" do
+      it "delete a Message" do
+        expect {
+          delete :destroy, params: { id: 1 }, session: valid_session }.to change(Message, :count).by(-1)
+      end
+
+      it "redirects to the root" do
+        delete :destroy, params: { id: 1 }, session: valid_session
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    context "with invalid params" do
+      it "has not deleted" do # try delete to non-existent message id
+        expect {
+          delete :destroy, params: { id: 0 }, session: valid_session }.to change(Message, :count).by(0)
+      end
+    end
+
+    context "when user is not logged in" do
+      # behavior: run before(:each)
+      # source: spec/support/controller_macros.rb
+      logout_user
+
+      it "redirect to login page" do
+        delete :destroy, params: { id: 1 }, session: valid_session
         expect(response).to redirect_to(new_user_session_path)
       end
     end
