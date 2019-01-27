@@ -31,11 +31,7 @@ RSpec.describe CommentsController, type: :controller do
   # end
 
   describe "GET #new" do
-    #login_user
-
     context "when user is not logged in" do
-      #logout_user
-
       it "redirect to login page" do
         get :new, params: { message_id: 1 }
         expect(response).to redirect_to(new_user_session_path)
@@ -67,16 +63,15 @@ RSpec.describe CommentsController, type: :controller do
     before do
       @message = FactoryBot.create(:message)
     end
-    
+
     context "with valid params" do
-      it "creates a new Message" do
+      it "creates a new Comment" do
         expect {
-          post :create, params: {message_id: 1, comment: valid_attributes}, session: valid_session
-        }.to change(Comment, :count).by(1)
+          post :create, params: { message_id: 1, comment: valid_attributes}, session: valid_session }.to change(Comment, :count).by(1)
       end
 
-      it "redirects to the created message" do
-        post :create, params: {message_id: 1, comment: valid_attributes}, session: valid_session
+      it "redirects to the root" do
+        post :create, params: { message_id: 1, comment: valid_attributes }, session: valid_session
         expect(response).to redirect_to(root_path)
       end
     end
@@ -84,16 +79,15 @@ RSpec.describe CommentsController, type: :controller do
     context "with invalid params" do
       it "has not saved" do
         expect {
-          post :create, params: {message_id: 1, comment: invalid_attributes}, session: valid_session
-        }.to change(Comment, :count).by(0)
+          post :create, params: { message_id: 1, comment: invalid_attributes}, session: valid_session }.to change(Comment, :count).by(0)
       end
     end
 
-    context "when user is not logged" do
+    context "when user is not logged in" do
       logout_user
 
       it "redirect to login page" do
-        post :create, params: {message_id: 1, comment: valid_attributes}, session: valid_session
+        post :create, params: { message_id: 1, comment: valid_attributes }, session: valid_session
         expect(response).to redirect_to(new_user_session_path)
       end
     end

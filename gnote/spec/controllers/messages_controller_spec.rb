@@ -57,12 +57,11 @@ RSpec.describe MessagesController, type: :controller do
     context "with valid params" do
       it "creates a new Message" do
         expect {
-          post :create, params: {message: valid_attributes}, session: valid_session
-        }.to change(Message, :count).by(1)
+          post :create, params: { message: valid_attributes }, session: valid_session }.to change(Message, :count).by(1)
       end
 
-      it "redirects to the created message" do
-        post :create, params: {message: valid_attributes}, session: valid_session
+      it "redirects to the root" do
+        post :create, params: { message: valid_attributes }, session: valid_session
         expect(response).to redirect_to(root_path)
       end
     end
@@ -70,16 +69,15 @@ RSpec.describe MessagesController, type: :controller do
     context "with invalid params" do
       it "has not saved" do
         expect {
-          post :create, params: {message: invalid_attributes}, session: valid_session
-        }.to change(Message, :count).by(0)
+          post :create, params: { message: invalid_attributes}, session: valid_session }.to change(Message, :count).by(0)
       end
     end
 
-    context "when user is not logged" do
+    context "when user is not logged in" do
       logout_user
 
       it "redirect to login page" do
-        post :create, params: {message: valid_attributes}, session: valid_session
+        post :create, params: { message: valid_attributes }, session: valid_session
         expect(response).to redirect_to(new_user_session_path)
       end
     end
