@@ -88,19 +88,42 @@ RSpec.describe CommentsController, type: :controller do
     end
   end
 
-  # describe "DELETE #destroy" do
-  #   it "destroys the requested message" do
-  #     message = Message.create! valid_attributes
-  #     expect {
-  #       delete :destroy, params: {id: message.to_param}, session: valid_session
-  #     }.to change(Message, :count).by(-1)
-  #   end
-  #
-  #   it "redirects to the messages list" do
-  #     message = Message.create! valid_attributes
-  #     delete :destroy, params: {id: message.to_param}, session: valid_session
-  #     expect(response).to redirect_to(messages_url)
-  #   end
-  # end
+  describe "DELETE #destroy" do
+    login_user
 
+    before do
+      @message = FactoryBot.create(:message) # create Message before create Comment for Associations.
+      @message = FactoryBot.create(:comment)
+    end
+
+    context "with valid params" do
+      it "delete a Cooment" do
+        expect {
+          delete :destroy, params: { id: 1 }, session: valid_session }.to change(Comment, :count).by(-1)
+      end
+
+      it "redirects to the root" do
+        delete :destroy, params: { id: 1 }, session: valid_session
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    context "with invalid params" do
+      it "has not deleted (try delete to non-existent comment id)" do
+        expect {
+          delete :destroy, params: { id: 0 }, session: valid_session }.to change(Comment, :count).by(0)
+      end
+    end
+
+    context "when user is not logged in" do
+      # behavior: run before(:each)
+      # source: spec/support/controller_macros.rb
+      logout_user
+
+      it "redirect to login page" do
+        delete :destroy, params: { id: 1 }, session: valid_session
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+  end
 end

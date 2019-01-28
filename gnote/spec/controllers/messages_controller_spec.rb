@@ -87,7 +87,7 @@ RSpec.describe MessagesController, type: :controller do
     end
   end
 
-  describe "POST #destroy" do
+  describe "DELETE #destroy" do
     login_user
 
     before do
@@ -107,7 +107,7 @@ RSpec.describe MessagesController, type: :controller do
     end
 
     context "with invalid params" do
-      it "has not deleted" do # try delete to non-existent message id
+      it "has not deleted (try delete to non-existent comment id)" do
         expect {
           delete :destroy, params: { id: 0 }, session: valid_session }.to change(Message, :count).by(0)
       end
