@@ -55,9 +55,11 @@
           </div>
         </div>
         <!-- Action -->
-        <div class="col s3">
-          <%= link_to '削除', message_path(m.id), method: :delete, data: { confirm: '削除しますか？' }, class: 'red-text' %>
-        </div>
+        <% if my_own_message?(m.user_id, current_user.id) %>
+          <div class="col s3">
+            <%= link_to '削除', message_path(m.id), method: :delete, data: { confirm: '削除しますか？' }, class: 'red-text' %>
+          </div>
+        <% end %>
       </div>
     </div>
 
@@ -73,9 +75,11 @@
             <p><span class="grey-text text-darken-2"><%= c.body %></span></p>
           </div>
           <!-- Action -->
-          <div class="col s3 offset-s4">
-            <%= link_to '削除', comment_path(c.id), method: :delete, data: { confirm: '削除しますか？' }, class: 'red-text' %>
-          </div>
+          <% if my_own_comment?(c.user_id, current_user.id) %>
+            <div class="col s3 offset-s4">
+              <%= link_to '削除', comment_path(c.id), method: :delete, data: { confirm: '削除しますか？' }, class: 'red-text' %>
+            </div>
+          <% end %>
         </div>
       </div>
     <% end %>
