@@ -28,6 +28,9 @@ RSpec.describe LikesController, type: :controller do
         # ------------------
         expect {
           post :create, xhr: true, params: valid_attributes, session: valid_session }.to change(Like, :count).by(1)
+
+        expect {
+          post :create, xhr: true, params: valid_attributes, session: valid_session }.to change{ Message.last.likes_count }.by(1)
       end
     end
 
