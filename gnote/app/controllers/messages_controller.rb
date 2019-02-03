@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
   include Informable # concerns/informable.rb
 
   def index
-    @messages = Message.recent(100).includes(:comments)
+    @messages = Message.recent_with_comments(100)
   end
 
   def new
