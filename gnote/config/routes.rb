@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :users do
+    get 'summaries/index'
+  end
   scope :comments do
     get '/:message_id/new', to: 'comments#new', as: :new_comment
     post '/:message_id/', to: 'comments#create', as: :comment
