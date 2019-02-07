@@ -7,4 +7,5 @@ class User < ApplicationRecord
 
   has_many :messages, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_one  :users_summary, class_name: 'Users::Summary', dependent: :destroy
 end

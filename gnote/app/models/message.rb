@@ -2,6 +2,7 @@ class Message < ApplicationRecord
   belongs_to :user
   has_many   :comments, -> { order(id: :asc) }, dependent: :destroy
   has_many   :likes, dependent: :destroy
+  has_one :users_summary, class_name: 'Users::Summary', :through => :user
 
   scope :recent, -> (count){
     order(id: :desc)

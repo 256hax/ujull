@@ -7,13 +7,24 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-User.create!(
-  email: 'dev@example.com',
-  password: 'password',
-  confirmed_at: Date.today,
-  created_at: Date.today,
-  updated_at: Date.today
-)
+User.create!([
+  {
+    id: 1,
+    email: 'dev@example.com',
+    password: 'password',
+    confirmed_at: Date.today,
+    created_at: Date.today,
+    updated_at: Date.today
+  },
+  {
+    id:2,
+    email: 'dev2@example.com',
+    password: 'password',
+    confirmed_at: Date.today,
+    created_at: Date.today,
+    updated_at: Date.today
+  }
+])
 
 Message.create!([
   {
@@ -29,32 +40,75 @@ Message.create!([
     body: '今日は8,000歩あるいた、すごくない？！！',
     created_at: Date.today,
     updated_at: Date.today,
+    user_id: 1,
+    likes_count: 0
+  },
+  {
+    id: 3,
+    body: '週末まとめ買いしていっぱいだった冷蔵庫内が、一週間後ほぼ空っぽになっていること
+
+おっしゃ(๑•̀ •́)و✧
+使い切ったぞわたし偉い。笑',
+    created_at: Date.today,
+    updated_at: Date.today,
+    user_id: 2,
+    likes_count: 1
+  },
+])
+
+Comment.create!([
+  {
+    id: 1,
+    body: '٩(ˊᗜˋ*)و.',
+    created_at: Date.today,
+    updated_at: Date.today,
+    message_id: 1,
     user_id: 1
+  },
+  {
+    id: 2,
+    body: 'からっぽすごいーーー！！　うちはもうすこしだ、がんばろ',
+    created_at: Date.today,
+    updated_at: Date.today,
+    message_id: 2,
+    user_id: 2
   }
 ])
 
-Comment.create!(
-  id: 1,
-  body: '٩(ˊᗜˋ*)و.',
-  created_at: Date.today,
-  updated_at: Date.today,
-  message_id: 1,
-  user_id: 1
-)
+Like.create!([
+  {
+    id: 1,
+    user_id: 1,
+    message_id: 1,
+    created_at: Date.today,
+    updated_at: Date.today
+  },
+  {
+    id: 2,
+    user_id: 2,
+    message_id: 3,
+    created_at: Date.today,
+    updated_at: Date.today
+  }
+])
 
-Like.create!(
-  id: 1,
-  user_id: 1,
-  message_id: 1,
-  created_at: Date.today,
-  updated_at: Date.today
-)
-
-Users::Summary.create!(
-  user_id: 1,
-  messages_count: 2,
-  comments_count: 1,
-  likes_count: 1,
-  created_at: Date.today,
-  updated_at: Date.today
-)
+Users::Summary.create!([
+  {
+    id: 1,
+    user_id: 1,
+    messages_count: 2,
+    comments_count: 1,
+    likes_count: 1,
+    created_at: Date.today,
+    updated_at: Date.today
+  },
+  {
+    id: 2,
+    user_id: 2,
+    messages_count: 1,
+    comments_count: 1,
+    likes_count: 1,
+    created_at: Date.today,
+    updated_at: Date.today
+  }
+])
