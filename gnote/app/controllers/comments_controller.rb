@@ -20,6 +20,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
+        @comment.users_summary.increment!(:comments_count, 1)
         format.html { redirect_to root_path, notice: '書き込みました！' }
         format.json { render :show, status: :created, location: @comment }
       else
@@ -33,6 +34,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     respond_to do |format|
+      @comment.users_summary.decrement!(:comments_count, 1)
       format.html { redirect_to root_path, notice: '削除しました' }
       format.json { head :no_content }
     end

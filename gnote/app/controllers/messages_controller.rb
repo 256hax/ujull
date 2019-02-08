@@ -18,6 +18,7 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
+        @message.users_summary.increment!(:messages_count, 1)
         format.html { redirect_to root_path, notice: '書き込みました！' }
         format.json { render :show, status: :created, location: @message }
       else
@@ -30,6 +31,7 @@ class MessagesController < ApplicationController
   def destroy
     @message.destroy
     respond_to do |format|
+      @message.users_summary.decrement!(:messages_count, 1)
       format.html { redirect_to root_path, notice: '削除しました' }
       format.json { head :no_content }
     end

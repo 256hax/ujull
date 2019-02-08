@@ -56,6 +56,10 @@ RSpec.describe MessagesController, type: :controller do
   describe "POST #create" do
     login_user
 
+    before do
+      @users_summary = FactoryBot.create(:users_summary)
+    end
+
     context "with valid params" do
       it "creates a new Message" do
         expect {
@@ -92,6 +96,7 @@ RSpec.describe MessagesController, type: :controller do
 
     before do
       @message = FactoryBot.create(:message)
+      @users_summary = FactoryBot.create(:users_summary)
     end
 
     context "with valid params" do

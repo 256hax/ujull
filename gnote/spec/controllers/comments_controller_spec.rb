@@ -55,12 +55,13 @@ RSpec.describe CommentsController, type: :controller do
 
     before do
       @message = FactoryBot.create(:message)
+      @users_summary = FactoryBot.create(:users_summary)
     end
 
     context "with valid params" do
       it "creates a new Comment" do
         expect {
-          post :create, params: { message_id: 1, comment: valid_attributes}, session: valid_session }.to change(Comment, :count).by(1)
+          post :create, params: { message_id: 1, comment: valid_attributes }, session: valid_session}.to change(Comment, :count).by(1)
       end
 
       it "redirects to the root" do
@@ -72,7 +73,7 @@ RSpec.describe CommentsController, type: :controller do
     context "with invalid params" do
       it "has not saved" do
         expect {
-          post :create, params: { message_id: 1, comment: invalid_attributes}, session: valid_session }.to change(Comment, :count).by(0)
+          post :create, params: { message_id: 1, comment: invalid_attributes }, session: valid_session }.to change(Comment, :count).by(0)
       end
     end
 
@@ -94,6 +95,7 @@ RSpec.describe CommentsController, type: :controller do
     before do
       @message = FactoryBot.create(:message) # create Message before create Comment for Associations.
       @message = FactoryBot.create(:comment)
+      @users_summary = FactoryBot.create(:users_summary)
     end
 
     context "with valid params" do

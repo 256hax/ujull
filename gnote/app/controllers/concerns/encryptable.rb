@@ -3,8 +3,8 @@ module Encryptable
 
   #----------------------------------
   # Encrypt Text Data
-  # args: string, returns: string
-  #
+  # args     : string
+  # returns  : string
   # Reference: https://api.rubyonrails.org/v5.2.2/classes/ActiveSupport/MessageEncryptor.html
   #----------------------------------
   def encrypt(text)

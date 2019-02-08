@@ -17,6 +17,7 @@ RSpec.describe LikesController, type: :controller do
 
     before do
       @message = FactoryBot.create(:message)
+      @users_summary = FactoryBot.create(:users_summary)
     end
 
     context "with valid params" do
