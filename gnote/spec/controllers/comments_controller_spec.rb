@@ -54,26 +54,37 @@ RSpec.describe CommentsController, type: :controller do
     login_user
 
     before do
-      @message = FactoryBot.create(:message)
       @users_summary = FactoryBot.create(:users_summary)
+      @message = FactoryBot.create(:message)
     end
 
     context "with valid params" do
       it "creates a new Comment" do
         expect {
-          post :create, params: { message_id: 1, comment: valid_attributes }, session: valid_session}.to change(Comment, :count).by(1)
+          post :create,
+          params: { message_id: 1, comment: valid_attributes },
+          session: valid_session
+        }.to change(Comment, :count).by(1)
       end
 
       it "redirects to the root" do
         post :create, params: { message_id: 1, comment: valid_attributes }, session: valid_session
         expect(response).to redirect_to(root_path)
       end
+
+      it "increase User Summary counter" do
+        post :create, params: { message_id: 1, comment: valid_attributes }, session: valid_session
+        expect { @users_summary.reload }.to change { @users_summary.comments_count }.by(1)
+      end
     end
 
     context "with invalid params" do
       it "has not saved" do
         expect {
-          post :create, params: { message_id: 1, comment: invalid_attributes }, session: valid_session }.to change(Comment, :count).by(0)
+          post :create,
+          params: { message_id: 1, comment: invalid_attributes },
+          session: valid_session
+        }.to change(Comment, :count).by(0)
       end
     end
 
@@ -93,27 +104,38 @@ RSpec.describe CommentsController, type: :controller do
     login_user
 
     before do
+      @users_summary = FactoryBot.create(:users_summary)
       @message = FactoryBot.create(:message) # create Message before create Comment for Associations.
       @message = FactoryBot.create(:comment)
-      @users_summary = FactoryBot.create(:users_summary)
     end
 
     context "with valid params" do
       it "delete a Cooment" do
         expect {
-          delete :destroy, params: { id: 1 }, session: valid_session }.to change(Comment, :count).by(-1)
+          delete :destroy,
+          params: { id: 1 },
+          session: valid_session
+        }.to change(Comment, :count).by(-1)
       end
 
       it "redirects to the root" do
         delete :destroy, params: { id: 1 }, session: valid_session
         expect(response).to redirect_to(root_path)
       end
+
+      it "decrease User Summary counter" do
+        delete :destroy, params: { id: 1 }, session: valid_session
+        expect { @users_summary.reload }.to change { @users_summary.comments_count}.by(-1)
+      end
     end
 
     context "with invalid params" do
       it "has not deleted (try delete to non-existent comment id)" do
         expect {
-          delete :destroy, params: { id: 0 }, session: valid_session }.to change(Comment, :count).by(0)
+          delete :destroy,
+          params: { id: 0 },
+          session: valid_session
+        }.to change(Comment, :count).by(0)
       end
     end
 

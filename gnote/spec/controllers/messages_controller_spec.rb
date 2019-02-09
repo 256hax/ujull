@@ -21,7 +21,7 @@ RSpec.describe MessagesController, type: :controller do
 
   describe "GET #index" do
     # behavior: run before(:each)
-    # source: spec/support/controller_macros.rb
+    # source  : spec/support/controller_macros.rb
     login_user
 
     it "response successfully" do
@@ -63,25 +63,32 @@ RSpec.describe MessagesController, type: :controller do
     context "with valid params" do
       it "creates a new Message" do
         expect {
-          post :create, params: { message: valid_attributes }, session: valid_session }.to change(Message, :count).by(1)
+          post :create, params: { message: valid_attributes }, session: valid_session
+        }.to change(Message, :count).by(1)
       end
 
       it "redirects to the root" do
         post :create, params: { message: valid_attributes }, session: valid_session
         expect(response).to redirect_to(root_path)
       end
+
+      it "increase User Summary counter" do
+        post :create, params: { message: valid_attributes }, session: valid_session
+        expect { @users_summary.reload }.to change { @users_summary.messages_count }.by(1)
+      end
     end
 
     context "with invalid params" do
       it "has not saved" do
         expect {
-          post :create, params: { message: invalid_attributes}, session: valid_session }.to change(Message, :count).by(0)
+          post :create, params: { message: invalid_attributes}, session: valid_session
+        }.to change(Message, :count).by(0)
       end
     end
 
     context "when user is not logged in" do
       # behavior: run before(:each)
-      # source: spec/support/controller_macros.rb
+      # source  : spec/support/controller_macros.rb
       logout_user
 
       it "redirect to login page" do
@@ -95,19 +102,25 @@ RSpec.describe MessagesController, type: :controller do
     login_user
 
     before do
-      @message = FactoryBot.create(:message)
       @users_summary = FactoryBot.create(:users_summary)
+      @message = FactoryBot.create(:message)
     end
 
     context "with valid params" do
       it "delete a Message" do
         expect {
-          delete :destroy, params: { id: 1 }, session: valid_session }.to change(Message, :count).by(-1)
+          delete :destroy, params: { id: 1 }, session: valid_session
+        }.to change(Message, :count).by(-1)
       end
 
       it "redirects to the root" do
         delete :destroy, params: { id: 1 }, session: valid_session
         expect(response).to redirect_to(root_path)
+      end
+
+      it "decrease User Summary counter" do
+        delete :destroy, params: { id: 1 }, session: valid_session
+        expect { @users_summary.reload }.to change { @users_summary.messages_count}.by(-1)
       end
     end
 
@@ -120,7 +133,7 @@ RSpec.describe MessagesController, type: :controller do
 
     context "when user is not logged in" do
       # behavior: run before(:each)
-      # source: spec/support/controller_macros.rb
+      # source  : spec/support/controller_macros.rb
       logout_user
 
       it "redirect to login page" do

@@ -16,8 +16,8 @@ RSpec.describe LikesController, type: :controller do
     login_user
 
     before do
-      @message = FactoryBot.create(:message)
       @users_summary = FactoryBot.create(:users_summary)
+      @message = FactoryBot.create(:message)
     end
 
     context "with valid params" do
@@ -28,17 +28,32 @@ RSpec.describe LikesController, type: :controller do
         # expect{response}.to change(Like, :count).by(1)
         # ------------------
         expect {
-          post :create, xhr: true, params: valid_attributes, session: valid_session }.to change(Like, :count).by(1)
+          post :create,
+          xhr: true,
+          params: valid_attributes,
+          session: valid_session
+        }.to change(Like, :count).by(1)
+      end
 
-        expect {
-          post :create, xhr: true, params: valid_attributes, session: valid_session }.to change{ Message.last.likes_count }.by(1)
+      it "increase Message Likes counter" do
+        post :create, xhr: true, params: valid_attributes, session: valid_session
+        expect { @message.reload }.to change { @message.likes_count }.by(1)
+      end
+
+      it "increase User Summary counter" do
+        post :create, xhr: true, params: valid_attributes, session: valid_session
+        expect { @users_summary.reload }.to change { @users_summary.likes_count }.by(1)
       end
     end
 
     context "with invalid params" do
       it "returns error" do
         expect {
-          post :create, xhr: true, params: invalid_attributes, session: valid_session }.to raise_error(ActiveRecord::RecordNotFound)
+          post :create,
+          xhr: true,
+          params: invalid_attributes,
+          session: valid_session
+        }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
 
