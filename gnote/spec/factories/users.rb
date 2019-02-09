@@ -8,7 +8,7 @@ FactoryBot.define do
   end
 
   # If "Symbol Name != Model Name", use class option. See below.
-  factory :another_user, :class => 'User' do
+  factory :another_user, class: 'User' do
     id { 2 }
     email { Faker::Internet.email }
     password { "password" }

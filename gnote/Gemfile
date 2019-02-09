@@ -48,12 +48,13 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # --- debugger ---
-  gem 'pry-rails'  # pry instead of irb on rails console
-  gem 'pry-doc'    # display method
-  gem 'pry-byebug' # for debug
-  gem 'pry-stack_explorer' # tracking stack
+  gem 'pry-rails'  # Pry instead of irb on Rails Console
+  gem 'pry-doc'    # Display Method
+  gem 'pry-byebug' # Debug
+  gem 'pry-stack_explorer' # Tracking Stack
 
   gem 'rspec-rails'
+  gem 'rails-controller-testing' # If use assigns
   gem 'factory_bot_rails'
   gem 'faker'
 end

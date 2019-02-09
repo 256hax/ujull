@@ -67,10 +67,10 @@ Comment.create!([
   },
   {
     id: 2,
-    body: '八千歩すごいーーー！！　うちはもうすこしだ、がんばろ',
+    body: 'からっぽすごいーーー！！　うちはもうすこしだ、がんばろ',
     created_at: Date.today,
     updated_at: Date.today,
-    message_id: 2,
+    message_id: 3,
     user_id: 2
   }
 ])
