@@ -1,2 +1,36 @@
-<h1>Users::Summaries#index</h1>
-<p>Find me in app/views/users/summaries/index.html.erb</p>
+<div class="container">
+  <h1 class="orange-text text-darken-3"><%= title 'Myページ' %></h1>
+
+  <h2>ほめノート サマリー</h2>
+  <div class="row">
+    <div class="col s12 m4">
+      <div class="card summary-card">
+        <div class="card-content center-align">
+          <p><i class="material-icons circle blue-text">mode_edit</i></p>
+          <h3><%= @users_summary.messages_count %></h3>
+          <p class="grey-text">自分をほめた数</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 m4">
+      <div class="card summary-card">
+        <div class="card-content center-align">
+          <p><i class="material-icons blue-text">reply</i></p>
+          <h3><%= @users_summary.comments_count %></h3>
+          <p class="grey-text">ほかのひとをほめた数</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 m4">
+      <div class="card summary-card">
+        <div class="card-content center-align">
+          <p><i class="material-icons red-text">favorite</i></p>
+          <h3><%= @users_summary.likes_count %></h3>
+          <p class="grey-text">いいねした数</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

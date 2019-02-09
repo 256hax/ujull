@@ -41,18 +41,19 @@ class CommentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_comment
-      @comment = current_user.comments.find_by(id: params[:id])
-      redirect_to root_path if @comment.nil?
-    end
 
-    def set_message
-      @message = Message.find(params[:message_id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_comment
+    @comment = current_user.comments.find_by(id: params[:id])
+    redirect_to root_path if @comment.nil?
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def comment_params
-      params.require(:comment).permit(:body, :message_id)
-    end
+  def set_message
+    @message = Message.find(params[:message_id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def comment_params
+    params.require(:comment).permit(:body, :message_id)
+  end
 end

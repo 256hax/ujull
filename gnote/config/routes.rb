@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  namespace :users do
-    get 'summaries/index'
-  end
   scope :comments do
     get '/:message_id/new', to: 'comments#new', as: :new_comment
     post '/:message_id/', to: 'comments#create', as: :comment
@@ -20,6 +17,11 @@ Rails.application.routes.draw do
     get "articles/#{action}", controller: 'static_pages', action: action
   end
 
+  namespace :users do
+    get '/summaries/', to: 'summaries#index'
+  end
+
   devise_for :users
+
   root to: 'messages#index'
 end
