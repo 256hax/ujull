@@ -20,6 +20,13 @@ RSpec.describe MessagesController, type: :controller do
   let(:valid_session) { {} }
 
   describe "GET #index" do
+    context "when user is not logged in" do
+      it "response successfully" do
+        get :index
+        expect(response).to be_successful
+      end
+    end
+
     # behavior: run before(:each)
     # source  : spec/support/controller_macros.rb
     login_user
