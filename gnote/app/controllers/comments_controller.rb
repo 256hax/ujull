@@ -5,10 +5,6 @@ class CommentsController < ApplicationController
   include Encryptable # concerns/encryptable.rb
   include Informable # concerns/informable.rb
 
-  def index
-    @comments = Comment.all
-  end
-
   def new
     @comment = current_user.comments.new
     @comment.message_id = @message.id # hidden_field in view. This code write to Controller for Validation.
