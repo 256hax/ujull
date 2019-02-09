@@ -105,6 +105,11 @@ RSpec.describe MessagesController, type: :controller do
     end
   end
 
+  # [Test Patterns]
+  # Case1. User Logged In & Valid Params         => Delete
+  # Case2. User Logged In & Invalid Params       => Not Delete
+  # Case3. Not Logged In User & Valid Params     => Not Delete
+  # Case4. Another User Logged In & Valid Params => Not Delete
   describe "DELETE #destroy" do
     login_user
 
@@ -134,7 +139,10 @@ RSpec.describe MessagesController, type: :controller do
     context "with invalid params" do
       it "has not deleted (try delete to non-existent comment id)" do
         expect {
-          delete :destroy, params: { id: 0 }, session: valid_session }.to change(Message, :count).by(0)
+          delete :destroy,
+          params: { id: 0 },
+          session: valid_session
+        }.to change(Message, :count).by(0)
       end
     end
 
@@ -146,6 +154,16 @@ RSpec.describe MessagesController, type: :controller do
       it "redirect to login page" do
         delete :destroy, params: { id: 1 }, session: valid_session
         expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
+    context "when another user logged in" do
+      logout_user
+      login_another_user
+
+      it "redirect to root page" do
+        delete :destroy, params: { id: 1 }, session: valid_session
+        expect(response).to redirect_to(root_path)
       end
     end
   end

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :likes, only: [:create]
   end
 
+  #--- Static Pages ---
   %w(
     about
     howto
@@ -16,8 +17,10 @@ Rails.application.routes.draw do
     get "articles/#{action}", controller: 'static_pages', action: action
   end
 
+  #--- Users ---
   namespace :users do
-    get '/summaries/', to: 'summaries#index'
+    get 'messages/', to: 'messages#index', as: :users_messages_path
+    get '/summaries/', to: 'summaries#index', as: :users_summaries_path
   end
 
   devise_for :users

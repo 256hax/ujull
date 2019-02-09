@@ -149,5 +149,15 @@ RSpec.describe CommentsController, type: :controller do
         expect(response).to redirect_to(new_user_session_path)
       end
     end
+
+    context "when another user logged in" do
+      logout_user
+      login_another_user
+
+      it "redirect to root page" do
+        delete :destroy, params: { id: 1 }, session: valid_session
+        expect(response).to redirect_to(root_path)
+      end
+    end
   end
 end
