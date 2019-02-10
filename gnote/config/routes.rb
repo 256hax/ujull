@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   scope :comments do
-    get '/:message_id/new', to: 'comments#new', as: :new_comment
-    post '/:message_id/', to: 'comments#create', as: :comment
-    delete  '/:id/', to: 'comments#destroy'
+    get ':message_id/new', to: 'comments#new', as: :new_comment
+    post ':message_id', to: 'comments#create', as: :comment
+    delete  ':id', to: 'comments#destroy'
   end
 
   resources  :messages do
@@ -19,8 +19,8 @@ Rails.application.routes.draw do
 
   #--- Users ---
   namespace :users do
-    get 'messages/', to: 'messages#index', as: :users_messages_path
-    get '/summaries/', to: 'summaries#index', as: :users_summaries_path
+    get 'messages', to: 'messages#index', as: :messages
+    get 'summaries', to: 'summaries#index', as: :summaries
   end
 
   devise_for :users
