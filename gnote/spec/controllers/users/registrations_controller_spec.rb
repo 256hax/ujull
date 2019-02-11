@@ -22,16 +22,8 @@ RSpec.describe Users::RegistrationsController, type: :controller do
         expect {
           post :create, params: { user: valid_attributes }
         }.to change(User, :count).by(1)
-        # .and change(User::Summary, :count).by(1)
+        .and change(Users::Summary, :count).by(1)
       end
-
-      # it "creates a new User and Users::Summary" do
-      #   fix_sequence_id(:users)
-      #
-      #   @user_records = User.count
-      #   post :create, params: { user: valid_attributes }
-      #   expect(@user_records.reload).to change(User, :count).by(1)
-      # end
     end
   end
 end

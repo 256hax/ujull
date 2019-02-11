@@ -7,7 +7,7 @@
       <div class="card summary-card">
         <div class="card-content center-align">
           <p><i class="material-icons blue-text">mode_edit</i></p>
-          <h3><%= link_to @users_summary.messages_count, users_messages_path unless @users_summary.messages_count.nil? %></h3>
+          <h3><%= link_to @users_summary.messages_count, users_messages_path %></h3>
           <p class="grey-text">自分をほめた数</p>
         </div>
       </div>
@@ -17,7 +17,7 @@
       <div class="card summary-card">
         <div class="card-content center-align">
           <p><i class="material-icons blue-text">reply</i></p>
-          <h3><%= link_to @users_summary.comments_count, users_comments_path unless @users_summary.comments_count.nil? %></h3>
+          <h3><%= link_to @users_summary.comments_count, users_comments_path %></h3>
           <p class="grey-text">ほかのひとをほめた数</p>
         </div>
       </div>

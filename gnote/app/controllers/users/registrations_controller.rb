@@ -12,16 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
-    #p resource
-    # Users::Summary.create(
-    #   id: 1,
-    #   user_id: 1,
-    #   messages_count: 2,
-    #   comments_count: 1,
-    #   likes_count: 1,
-    #   created_at: Date.today,
-    #   updated_at: Date.today
-    # )
+    Users::Summary.create(user_id: resource.id) # Saved user id
   end
 
   # GET /resource/edit
