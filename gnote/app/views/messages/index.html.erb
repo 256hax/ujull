@@ -1,7 +1,7 @@
 <% title 'TOP' %>
 
 <div class="container">
-  <h1 class="orange-text text-darken-3">みんなのほめノート</h3>
+  <h1 class="orange-text text-darken-3">みんなのほめノート</h1>
   <p>まいにち、自分をほめよう！ 自分へのほめ言葉が匿名で書ける「みんなのほめノート」</p>
 
   <div class="row">
@@ -29,11 +29,13 @@
     </div>
     <div class="section">
       <div class="col s12">
-        <p>書き込みは匿名になります。</p>
+        <p>↑このボタン✎から書き込みできます！</p>
       </div>
     </div>
   </div>
 
   <!-- Messages -->
+  <h2>直近<%= @record_count %>件のほめノート</h2>
+  <p>アカウント登録すると、自分の書き込みはMyページからもっと見ることができます。</p>
   <%= render 'messages' %>
 </div>
