@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+include DataInitializable
 
 User.create!([
   {
@@ -120,3 +121,16 @@ Users::Summary.create!([
     updated_at: Date.today
   }
 ])
+
+#--- Fix table sequence id ---
+table_name = %w(
+  users
+  messages
+  comments
+  likes
+  users_summaries
+)
+
+table_name.each do |t|
+  fix_sequence_id(t) # concerns/data_initializable.rb
+end

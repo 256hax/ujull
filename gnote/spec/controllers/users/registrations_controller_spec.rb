@@ -17,7 +17,7 @@ RSpec.describe Users::RegistrationsController, type: :controller do
 
     context "with valid params" do
       it "creates a new User and Users::Summary" do
-        fix_sequence_id(:users)
+        fix_sequence_id(:users) # concerns/data_initializable.rb
 
         expect {
           post :create, params: { user: valid_attributes }
