@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   #--- Users ---
   namespace :users do
+    get 'comments', to: 'comments#index', as: :comments
     get 'messages', to: 'messages#index', as: :messages
     get 'summaries', to: 'summaries#index', as: :summaries
   end
