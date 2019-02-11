@@ -39,7 +39,8 @@
     <ul>
       <li><%= link_to 'Myノート', users_messages_path %></li>
       <li><%= link_to 'Myコメント', users_comments_path %></li>
-      <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+      <li><%= link_to 'アカウント編集', edit_user_registration_path %></li>
+      <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: {confirm: "ログアウトしますか？"} %></li>
     </ul>
   </div>
 </div>
