@@ -35,7 +35,7 @@ RSpec.describe Users::MessagesController, type: :controller do
         FactoryBot.create(:another_user_message)
       end
 
-      it "redirect to root page" do
+      it "not show User(user_id: 1) contents" do
         get :index
         expect( assigns(:messages)[0].user_id ).not_to eq(1)
       end
