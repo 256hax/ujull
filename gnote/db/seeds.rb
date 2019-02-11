@@ -17,7 +17,7 @@ User.create!([
     updated_at: Date.today
   },
   {
-    id:2,
+    id: 2,
     email: 'dev2@example.com',
     password: 'password',
     confirmed_at: Date.today,
