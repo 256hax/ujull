@@ -6,6 +6,7 @@ class MessagesController < ApplicationController
 
   def index
     @record_count = 100.freeze
+    # .page(params[:page]) is pagination(kaminari gem)
     @messages = Message.recent_with_comments(@record_count).page(params[:page])
   end
 
