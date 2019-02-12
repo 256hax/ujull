@@ -38,4 +38,5 @@
   <h2>直近<%= @record_count %>件のほめノート</h2>
   <p>アカウント登録すると、自分の書き込みはMyページからもっと見ることができます。</p>
   <%= render 'messages' %>
+  <%= paginate(@messages) %>
 </div>

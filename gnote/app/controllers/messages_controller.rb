@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
 
   def index
     @record_count = 100.freeze
-    @messages = Message.recent_with_comments(@record_count)
+    @messages = Message.recent_with_comments(@record_count).page(params[:page])
   end
 
   def new
@@ -48,6 +48,6 @@ class MessagesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def message_params
-    params.require(:message).permit(:body)
+    params.require(:message).permit(:body, :page)
   end
 end
