@@ -1,24 +1,18 @@
-# README
+My Pet Project. gnote (ほめノート) is praise comments service.
+- All users are anonymous
+- Praise comments to myself
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Technologies
+### Frontend Layer
+- Materialize
+- Google Japanese Fonts
+- Vanilla JS, Ajax
 
-Things you may want to cover:
+### Application Layer
+- Ruby on Rails
+- Test Framework: RSpec
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Middleware Layer
+- Nginx
+- PostgreSQL
+- Active Record
