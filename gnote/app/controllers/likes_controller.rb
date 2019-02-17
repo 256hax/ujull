@@ -6,7 +6,6 @@ class LikesController < ApplicationController
     @like = Like.create(user_id: current_user.id, message_id: params[:message_id])
     @like.users_summary.increment!(:likes_count, 1)
 
-    @likes = Like.where(message_id: params[:message_id])
     @message.reload
   end
 
